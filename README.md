@@ -1,18 +1,23 @@
 # React Pomodoro
 
-> 
+**1 -** Prepare the environment:
 
-## Versioning
+```sh
+$ npm install -g webpack
+```
 
-To keep better organization of releases we follow the [Semantic Versioning 2.0.0](http://semver.org/) guidelines.
+**2 -** Clone the project and install the dependencies:
 
-## Contributing
-Find on our [roadmap](https://github.com/afonsopacifer/react-pomodoro/issues/1) the next steps of the project ;)
-<br>
-Want to contribute? [Follow these recommendations](https://github.com/afonsopacifer/react-pomodoro/blob/master/CONTRIBUTING.md).
+```sh
+$ git clone https://github.com/afonsopacifer/react-pomodoro.git
+$ cd react-pomodoro
+$ npm install
+```
+**3 -** Run webpack and webpack-dev-server:
 
-## History
-See [Releases](https://github.com/afonsopacifer/react-pomodoro/releases) for detailed changelog.
+```sh
+$ npm start
+```
 
 ## License
 [MIT License](https://github.com/afonsopacifer/react-pomodoro/blob/master/LICENSE.md) © [Afonso Pacifer](http://afonsopacifer.com/)
