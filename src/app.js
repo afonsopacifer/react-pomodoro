@@ -6,7 +6,10 @@ import ReactDom from "react-dom";
 const Timer = React.createClass({
 
   getInitialState () {
-    return {time: this.props.time};
+    return {
+      time: this.props.time,
+      timeFormated: null
+    };
   },
 
   componentDidMount() {
@@ -14,9 +17,19 @@ const Timer = React.createClass({
   },
 
   elapse() {
+    //time elapse
     let oldState = this.state.time;
     let newState = oldState - 1;
-    this.setState({time: newState});
+
+    //time format
+    let m = Math.floor(newState % 3600 / 60);
+    let s = Math.floor(newState % 3600 % 60);
+    let timeFormated = ((m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s;
+
+    this.setState({
+      time: newState,
+      timeFormated:timeFormated
+    });
   },
 
   componentWillReceiveProps(nextProps) {
@@ -25,9 +38,9 @@ const Timer = React.createClass({
 
   render() {
     return (
-      <div>
-        {this.state.time}
-      </div>
+      <span>
+        {this.state.timeFormated}
+      </span>
     )
   }
 
@@ -37,8 +50,12 @@ const Timer = React.createClass({
 // ----------------------------------
 const Pomodoro = React.createClass({
 
- getInitialState () {
-    return {time: 100};
+  getInitialState () {
+    return {time: null};
+  },
+
+  componentDidMount() {
+    this.setState({time: 1500});
   },
 
   setTime(newTime) {
@@ -49,9 +66,9 @@ const Pomodoro = React.createClass({
     return (
       <div>
         <Timer time={this.state.time}/>
-        <button onClick={this.setTime.bind(this, 1000)}>Pomodoro</button>
-        <button onClick={this.setTime.bind(this, 500)}>Short</button>
-        <button onClick={this.setTime.bind(this, 2000)}>Long</button>
+        <button onClick={this.setTime.bind(this, 1500)}>Focus</button>
+        <button onClick={this.setTime.bind(this, 300)}>Short Break</button>
+        <button onClick={this.setTime.bind(this, 900)}>Long Break</button>
       </div>
     )
   }
