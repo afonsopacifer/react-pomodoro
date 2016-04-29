@@ -1,74 +1,65 @@
 import React from "react";
 import ReactDom from "react-dom";
 
-// <Timer />
-// ----------------------------------
-const Timer = React.createClass({
+const Pomodoro = React.createClass({
 
   getInitialState () {
     return {
-      time: this.props.time,
-      timeFormated: null
+      time: 0,
+      timeFormated: 0,
+      play: false
     };
   },
 
   componentDidMount() {
-    setInterval(this.elapse, 1000);
+    this.setTime(1500);
   },
 
-  elapse() {
-    //time elapse
-    let oldState = this.state.time;
-    let newState = oldState - 1;
+  elapseTime() {
+    if (this.state.time === 0) {
+      this.reset(0);
+    }
+    if (this.state.play == true) {
+      let newState = this.state.time - 1;
+      let realTime = this.format(newState);
+      this.setState({time: newState, timeFormated:realTime});
+    }
+  },
 
-    //time format
-    let m = Math.floor(newState % 3600 / 60);
-    let s = Math.floor(newState % 3600 % 60);
+  format(seconds) {
+    let m = Math.floor(seconds % 3600 / 60);
+    let s = Math.floor(seconds % 3600 % 60);
     let timeFormated = ((m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s;
-
-    this.setState({
-      time: newState,
-      timeFormated:timeFormated
-    });
+    return timeFormated;
   },
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({time: nextProps.time});
+  play() {
+    clearInterval(this.interval);
+    this.interval = setInterval(this.elapseTime, 1000);
+    this.setState({play: true});
   },
 
-  render() {
-    return (
-      <span>
-        {this.state.timeFormated}
-      </span>
-    )
-  }
-
-});
-
-// <Pomodoro />
-// ----------------------------------
-const Pomodoro = React.createClass({
-
-  getInitialState () {
-    return {time: null};
-  },
-
-  componentDidMount() {
-    this.setState({time: 1500});
+  reset(resetFor) {
+    clearInterval(this.interval);
+    let time = this.format(resetFor);
+    this.setState({play: false});
+    this.setState({timeFormated:time});
   },
 
   setTime(newTime) {
+    this.reset(newTime);
     this.setState({time: newTime});
   },
 
   render() {
     return (
       <div>
-        <Timer time={this.state.time}/>
-        <button onClick={this.setTime.bind(this, 1500)}>Focus</button>
-        <button onClick={this.setTime.bind(this, 300)}>Short Break</button>
-        <button onClick={this.setTime.bind(this, 900)}>Long Break</button>
+        <span>{this.state.timeFormated}</span>
+        <button onClick={this.setTime.bind(this, 1500)}>Code</button>
+        <button onClick={this.setTime.bind(this, 300)}>Social</button>
+        <button onClick={this.setTime.bind(this, 900)}>Coffee</button>
+        <button onClick={this.play}>Play</button>
+        <button onClick={this.reset.bind(this, this.state.time)}>Pause</button>
       </div>
     )
   }
