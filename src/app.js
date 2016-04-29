@@ -6,7 +6,6 @@ const Pomodoro = React.createClass({
   getInitialState () {
     return {
       time: 0,
-      timeFormated: 0,
       play: false
     };
   },
@@ -18,11 +17,11 @@ const Pomodoro = React.createClass({
   elapseTime() {
     if (this.state.time === 0) {
       this.reset(0);
+      this.alert();
     }
     if (this.state.play == true) {
       let newState = this.state.time - 1;
-      let realTime = this.format(newState);
-      this.setState({time: newState, timeFormated:realTime});
+      this.setState({time: newState});
     }
   },
 
@@ -43,7 +42,6 @@ const Pomodoro = React.createClass({
     clearInterval(this.interval);
     let time = this.format(resetFor);
     this.setState({play: false});
-    this.setState({timeFormated:time});
   },
 
   setTime(newTime) {
@@ -51,10 +49,19 @@ const Pomodoro = React.createClass({
     this.setState({time: newTime});
   },
 
+  alert() {
+    window.navigator.vibrate(1000);
+    let notification = new Notification("Pomodoro", {
+        icon: "icon.png",
+        lang: "en",
+        body: "Hey, the time is over!"
+    });
+  },
+
   render() {
     return (
       <div>
-        <span>{this.state.timeFormated}</span>
+        <span>{this.format(this.state.time)}</span>
         <button onClick={this.setTime.bind(this, 1500)}>Code</button>
         <button onClick={this.setTime.bind(this, 300)}>Social</button>
         <button onClick={this.setTime.bind(this, 900)}>Coffee</button>
