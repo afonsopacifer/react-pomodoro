@@ -6,7 +6,8 @@ const Pomodoro = React.createClass({
   getInitialState () {
     return {
       time: 0,
-      play: false
+      play: false,
+      timeType: 0
     };
   },
 
@@ -46,16 +47,16 @@ const Pomodoro = React.createClass({
 
   setTime(newTime) {
     this.reset(newTime);
-    this.setState({time: newTime});
+    this.setState({time: newTime, timeType: newTime});
   },
 
   alert() {
     window.navigator.vibrate(1000);
-    let notification = new Notification("Pomodoro", {
-        icon: "icon.png",
-        lang: "en",
-        body: "Hey, the time is over!"
-    });
+    if (this.state.timeType == 1500) {
+      let notification = new Notification("Relax :)", {icon: "coffee.png", lang: "en", body: "Go talk or drink a coffe."});
+    } else {
+      let notification = new Notification("The time is over!", {icon: "code.png", lang: "en", body: "Hey, back to code!"});
+    }
   },
 
   render() {
