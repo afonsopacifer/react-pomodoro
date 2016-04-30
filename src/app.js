@@ -52,17 +52,17 @@ const Pomodoro = React.createClass({
 
   alert() {
 
-    if(this.refs.vibrate.checked){
+    if(this.refs.vibrate.checked) {
       window.navigator.vibrate(1000);
     }
 
-    if(this.refs.audio.checked){
+    if(this.refs.audio.checked) {
       let audio = new Audio('alarm.mp3');
       audio.play();
       setTimeout(()=> audio.pause(), 1400);
     }
 
-    if(this.refs.notification.checked){
+    if(this.refs.notification.checked) {
       if (this.state.timeType == 1500) {
         let notification = new Notification("Relax :)", {icon: "coffee.png", lang: "en", body: "Go talk or drink a coffe."});
       } else {
@@ -81,9 +81,9 @@ const Pomodoro = React.createClass({
         <button onClick={this.setTime.bind(this, 900)}>Coffee</button>
         <button onClick={this.play}>Play</button>
         <button onClick={this.reset.bind(this, this.state.time)}>Pause</button>
-        <input type="checkbox" ref="vibrate"/>Notification
+        <input type="checkbox" ref="notification"/>Notification
         <input type="checkbox" ref="audio"/>Sound
-        <input type="checkbox" ref="notification"/>Vibration
+        <input type="checkbox" ref="vibrate"/>Vibration
       </div>
     )
   }
