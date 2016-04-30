@@ -13,6 +13,7 @@
     "start": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot"
   },
   "devDependencies": {
+    "babel-core": "^6.7.7",
     "babel-loader": "^6.2.0",
     "babel-plugin-add-module-exports": "^0.1.2",
     "babel-plugin-react-html-attrs": "^2.0.0",
