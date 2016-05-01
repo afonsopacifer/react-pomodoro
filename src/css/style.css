@@ -83,7 +83,7 @@ body {
 .play {
   border: 0;
   background-color: #2BA0A0;
-  background-image: url("play.svg");
+  background-image: url("../img/play.svg");
   background-repeat: no-repeat;
   background-position: center;
   width: 50px;
@@ -108,7 +108,7 @@ body {
 .stop {
   border: 0;
   background-color: #2BA0A0;
-  background-image: url("stop.svg");
+  background-image: url("../img/stop.svg");
   background-repeat: no-repeat;
   background-position: center;
   width: 50px;
