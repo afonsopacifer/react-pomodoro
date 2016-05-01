@@ -44,6 +44,8 @@ $ npm install
 $ npm start
 ```
 
+Go to: [localhost:8080](http://localhost:8080/)
+
 ## Contributing
 Find on our [issues](https://github.com/afonsopacifer/react-pomodoro/issues/) the next steps of the project ;)
 <br>

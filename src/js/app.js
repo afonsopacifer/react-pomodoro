@@ -20,7 +20,7 @@ const Pomodoro = React.createClass({
       this.reset(0);
       this.alert();
     }
-    if (this.state.play == true) {
+    if (this.state.play === true) {
       let newState = this.state.time - 1;
       this.setState({time: newState});
     }
@@ -35,9 +35,9 @@ const Pomodoro = React.createClass({
 
   formatType(timeType) {
     let timeTypeFormated;
-    if(timeType == 1500){timeTypeFormated = "code";}
-    if(timeType == 300){timeTypeFormated = "social";}
-    if(timeType == 900){timeTypeFormated = "coffee";}
+    if(timeType === 1500){timeTypeFormated = "code";}
+    if(timeType === 300){timeTypeFormated = "social";}
+    if(timeType === 900){timeTypeFormated = "coffee";}
     return timeTypeFormated;
   },
 
@@ -59,35 +59,44 @@ const Pomodoro = React.createClass({
   },
 
   alert() {
-
+    // vibration
     if(this.refs.vibrate.checked) {
       window.navigator.vibrate(1000);
     }
-
+    // audio
     if(this.refs.audio.checked) {
       let audio = new Audio('songs/alarm.mp3');
       audio.play();
       setTimeout(()=> audio.pause(), 1400);
     }
-
+    // notification
     if(this.refs.notification.checked) {
-      if (this.state.timeType == 1500) {
-        let notification = new Notification("Relax :)", {icon: "img/coffee.png", lang: "en", body: "Go talk or drink a coffe."});
+      if (this.state.timeType === 1500) {
+        let notification = new Notification("Relax :)", {
+          icon: "img/coffee.png",
+          lang: "en",
+          body: "Go talk or drink a coffe."
+        });
       } else {
-        let notification = new Notification("The time is over!", {icon: "img/code.png", lang: "en", body: "Hey, back to code!"});
+        let notification = new Notification("The time is over!", {
+          icon: "img/code.png",
+          lang: "en",
+          body: "Hey, back to code!"
+        });
       }
     }
-
   },
 
   render() {
     return (
       <div className="pomodoro">
 
+        {/* Main section
+        ------------------------------- */}
         <div className="main">
 
           <div className="container display">
-            <span className="time">{this.format(this.state.time)} </span>
+            <span className="time">{this.format(this.state.time)}</span>
             <span className="timeType">The {this.formatType(this.state.timeType)} time!</span>
           </div>
 
@@ -97,41 +106,52 @@ const Pomodoro = React.createClass({
             <button className="btn" onClick={this.setTime.bind(this, 900)}>Coffee</button>
           </div>
 
-        </div>
+        </div> {/* main */}
 
+        {/* Bottom section
+        ------------------------------- */}
         <div class="bottomBar">
 
           <div className="controls">
             <div className="container">
+
               <div className="controlsPlay">
                 <button className="play" onClick={this.play}></button>
                 <button className="stop" onClick={this.reset.bind(this, this.state.time)}></button>
               </div>
+
               <div className="controlsCheck">
+
                 <span className="check">
                   <input type="checkbox" ref="notification" id="notification"/>
                   <label for="notification"></label>
                   <span className="checkTitle" >Notification</span>
                 </span>
+
                 <span className="check">
                   <input type="checkbox" ref="audio" id="audio"/>
                   <label for="audio"></label>
                   <span className="checkTitle">Sound</span>
                 </span>
+
                 <span className="check">
                   <input type="checkbox" ref="vibrate" id="vibrate"/>
                   <label for="vibrate"></label>
                   <span className="checkTitle">Vibration</span>
                 </span>
-              </div>
-            </div>
-          </div>
 
-          <footer className="credits">Made with <span className="heart"></span> by <a href="https://github.com/afonsopacifer" className="link" target="_blank">@afonsopacifer</a></footer>
+              </div> {/* controlsCheck */}
 
-        </div>
+            </div> {/* container */}
+          </div> {/* controls */}
 
-      </div>
+          <footer className="credits">
+            Made with <span className="heart"></span> by <a href="https://github.com/afonsopacifer" className="link" target="_blank">@afonsopacifer</a>
+          </footer>
+
+        </div> {/* bottomBar */}
+
+      </div> /* bottomBar */
     )
   }
 

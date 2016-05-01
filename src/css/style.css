@@ -1,6 +1,10 @@
-* {box-sizing: border-box;}
+* {
+  box-sizing: border-box;
+}
 
-html,body {height: 100%;}
+html,body,#app {
+  height: 100%;
+}
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -8,17 +12,27 @@ body {
   background-color: #272727;
 }
 
-#app {height: 100%;}
-
 .pomodoro {
   height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
+/* Main section
+------------------------------- */
 .main {
-  margin-bottom: 61px;
+  margin-bottom: 61px; /* For stick footer */
 }
 
 @media (max-width: 500px) {
@@ -28,13 +42,26 @@ body {
 }
 
 .container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
   padding: 5px;
+}
+
+/* Display */
+.display {
+  margin-bottom: 20px;
 }
 
 .time {
@@ -55,6 +82,7 @@ body {
   text-align: center;
 }
 
+/* Time control */
 .btn {
   border: 0;
   background: #2BA0A0;
@@ -64,6 +92,7 @@ body {
   max-width: 110px;
   margin: 1px;
   font-weight: 300;
+  -webkit-transition: background .3s;
   transition: background .3s;
 }
 
@@ -71,73 +100,46 @@ body {
   background: #1D8888;
 }
 
-.btn:active {
+.btn:active, .btn:focus  {
+  outline:0;
   background: #5AAFAF;
 }
 
-.btn:focus {
+.btnIcon {
+  border: 0;
+  background-color: #2BA0A0;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  background-size: 40px;
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
+}
+
+.btnIcon:hover {
+  opacity: .8;
+}
+
+.btnIcon:active, .btnIcon:focus {
   outline:0;
-  background: #5AAFAF;
+  opacity: .5;
 }
 
 .play {
-  border: 0;
-  background-color: #2BA0A0;
   background-image: url("../img/play.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 50px;
-  height: 50px;
-  background-size: 40px;
-  transition: opacity .3s;
-}
-
-.play:hover {
-  opacity: .8;
-}
-
-.play:active {
-  opacity: .5;
-}
-
-.play:focus {
-  outline:0;
-  opacity: .5;
 }
 
 .stop {
-  border: 0;
-  background-color: #2BA0A0;
   background-image: url("../img/stop.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 50px;
-  height: 50px;
-  background-size: 40px;
-  transition: opacity .3s;
 }
 
-.stop:hover {
-  opacity: .8;
-}
-
-.stop:active {
-  opacity: .5;
-}
-
-.stop:focus {
-  outline:0;
-  opacity: .5;
-}
-
+/* Bottom section
+------------------------------- */
 .bottomBar {
   position: absolute;
   width: 100%;
   bottom: 0;
-}
-
-.display {
-  margin-bottom: 20px;
 }
 
 .controls {
@@ -147,22 +149,34 @@ body {
 
 .controlsCheck {
   margin-left: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 @media (max-width: 500px) {
   .controlsCheck {
     width: 100%;
-    justify-content: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     margin: 20px 0;
-    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
   }
 }
 
 .check {
   display: inline-block;
   margin: 0 10px;
+  -webkit-transition: color .3s;
   transition: color .3s;
 }
 
@@ -190,9 +204,18 @@ body {
 	width: 15px;
 	margin: 0;
 	padding: 0;
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
-	justify-content: center;
-	align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	position: relative;
 }
 
@@ -212,7 +235,8 @@ body {
 	left: 1px;
 	width: 10px;
 	height: 5px;
-	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	        transform: rotate(45deg);
 	content: "";
 }
 
@@ -224,7 +248,8 @@ body {
 	right: -1px;
 	width: 5px;
 	height: 18px;
-	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	        transform: rotate(45deg);
 	content: "";
 }
 
@@ -240,6 +265,7 @@ body {
 .link {
   color: #fff;
   text-decoration: none;
+  -webkit-transition: color .3s;
   transition: color .3s;
 }
 
@@ -247,15 +273,12 @@ body {
   opacity: .8;
 }
 
-.link:active {
-  opacity: .5;
-}
-
-.link:focus {
+.link:active. .link:focus {
   outline:0;
   opacity: .5;
 }
 
+/* Pulse heart */
 .heart {
   margin: 0 5px;
   width: 10px;
@@ -263,7 +286,8 @@ body {
   background-color: #DDE00B;
   position: relative;
   display: inline-block;
-  animation: pulse .5s infinite alternate ease-in;
+  -webkit-animation: pulse .5s infinite alternate ease-in;
+          animation: pulse .5s infinite alternate ease-in;
 }
 
 .heart:before {
@@ -288,7 +312,12 @@ body {
   content: "";
 }
 
+@-webkit-keyframes pulse {
+    from {-webkit-transform: rotate(-135deg) scale(1);transform: rotate(-135deg) scale(1);}
+    to   {-webkit-transform: rotate(-135deg) scale(1.2);transform: rotate(-135deg) scale(1.2);}
+}
+
 @keyframes pulse {
-    from {transform: rotate(-135deg) scale(1);}
-    to   {transform: rotate(-135deg) scale(1.2);}
+    from {-webkit-transform: rotate(-135deg) scale(1);transform: rotate(-135deg) scale(1);}
+    to   {-webkit-transform: rotate(-135deg) scale(1.2);transform: rotate(-135deg) scale(1.2);}
 }
