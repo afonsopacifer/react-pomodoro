@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDom from "react-dom";
+import Footer from "./footer.js";
+import GithubCorner from "react-github-corner";
 
 const Pomodoro = React.createClass({
 
@@ -90,6 +92,11 @@ const Pomodoro = React.createClass({
   render() {
     return (
       <div className="pomodoro">
+        <GithubCorner
+          href="https://github.com/afonsopacifer/react-pomodoro"
+          bannerColor="#2BA0A0"
+          octoColor="#272727"
+        />
 
         {/* Main section
         ------------------------------- */}
@@ -145,9 +152,7 @@ const Pomodoro = React.createClass({
             </div> {/* container */}
           </div> {/* controls */}
 
-          <footer className="credits">
-            Made with <span className="heart"></span> by <a href="https://github.com/afonsopacifer" className="link" target="_blank">@afonsopacifer</a>
-          </footer>
+          <Footer />
 
         </div> {/* bottomBar */}
 
