@@ -65,16 +65,16 @@ const Pomodoro = React.createClass({
     }
 
     if(this.refs.audio.checked) {
-      let audio = new Audio('alarm.mp3');
+      let audio = new Audio('songs/alarm.mp3');
       audio.play();
       setTimeout(()=> audio.pause(), 1400);
     }
 
     if(this.refs.notification.checked) {
       if (this.state.timeType == 1500) {
-        let notification = new Notification("Relax :)", {icon: "coffee.png", lang: "en", body: "Go talk or drink a coffe."});
+        let notification = new Notification("Relax :)", {icon: "img/coffee.png", lang: "en", body: "Go talk or drink a coffe."});
       } else {
-        let notification = new Notification("The time is over!", {icon: "code.png", lang: "en", body: "Hey, back to code!"});
+        let notification = new Notification("The time is over!", {icon: "img/code.png", lang: "en", body: "Hey, back to code!"});
       }
     }
 
