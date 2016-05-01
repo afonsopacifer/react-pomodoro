@@ -116,8 +116,8 @@ const Pomodoro = React.createClass({
             <div className="container">
 
               <div className="controlsPlay">
-                <button className="play" onClick={this.play}></button>
-                <button className="stop" onClick={this.reset.bind(this, this.state.time)}></button>
+                <button className="play btnIcon" onClick={this.play}></button>
+                <button className="stop btnIcon" onClick={this.reset.bind(this, this.state.time)}></button>
               </div>
 
               <div className="controlsCheck">
