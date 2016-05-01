@@ -1,3 +1,294 @@
-* {
-  box-sizing: border-box;
+* {box-sizing: border-box;}
+
+html,body {height: 100%;}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  background-color: #272727;
+}
+
+#app {height: 100%;}
+
+.pomodoro {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main {
+  margin-bottom: 61px;
+}
+
+@media (max-width: 500px) {
+  .main {
+    margin-bottom: 258px;
+  }
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.time {
+  font-size: 72px;
+  font-weight: 400;
+  color: #fff;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.timeType {
+  display: block;
+  font-size: 24px;
+  color: #2BA0A0;
+  font-weight: 300;
+  width: 100%;
+  text-align: center;
+}
+
+.btn {
+  border: 0;
+  background: #2BA0A0;
+  color: #fff;
+  padding: 10px 0;
+  width: 100%;
+  max-width: 110px;
+  margin: 1px;
+  font-weight: 300;
+  transition: background .3s;
+}
+
+.btn:hover {
+  background: #1D8888;
+}
+
+.btn:active {
+  background: #5AAFAF;
+}
+
+.btn:focus {
+  outline:0;
+  background: #5AAFAF;
+}
+
+.play {
+  border: 0;
+  background-color: #2BA0A0;
+  background-image: url("play.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  background-size: 40px;
+  transition: opacity .3s;
+}
+
+.play:hover {
+  opacity: .8;
+}
+
+.play:active {
+  opacity: .5;
+}
+
+.play:focus {
+  outline:0;
+  opacity: .5;
+}
+
+.stop {
+  border: 0;
+  background-color: #2BA0A0;
+  background-image: url("stop.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  background-size: 40px;
+  transition: opacity .3s;
+}
+
+.stop:hover {
+  opacity: .8;
+}
+
+.stop:active {
+  opacity: .5;
+}
+
+.stop:focus {
+  outline:0;
+  opacity: .5;
+}
+
+.bottomBar {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.display {
+  margin-bottom: 20px;
+}
+
+.controls {
+  background: #2BA0A0;
+  padding: 2.5px 0;
+}
+
+.controlsCheck {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 500px) {
+  .controlsCheck {
+    width: 100%;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+}
+
+.check {
+  display: inline-block;
+  margin: 0 10px;
+  transition: color .3s;
+}
+
+@media (max-width: 500px) {
+  .check {
+    width: 100%;
+    margin: 10px;
+  }
+}
+
+.checkTitle {
+  color: #fff;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+/* Checkbox style and UI feedback */
+.check input[type='checkbox'] {
+	display: none;
+}
+
+.check label {
+	border: 1px solid #ccc;
+	height: 15px;
+	width: 15px;
+	margin: 0;
+	padding: 0;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.check label:hover {
+  cursor: pointer;
+}
+
+.check input[type='checkbox']:checked + label {
+	border: 1px solid #DDE00B;
+}
+
+.check input[type='checkbox']:checked + label:after {
+	background-color: #DDE00B;
+	position: absolute;
+	display: block;
+	bottom: 4px;
+	left: 1px;
+	width: 10px;
+	height: 5px;
+	transform: rotate(45deg);
+	content: "";
+}
+
+.check input[type='checkbox']:checked + label:before {
+	background-color: #DDE00B;
+	position: absolute;
+	display: block;
+	bottom: 0px;
+	right: -1px;
+	width: 5px;
+	height: 18px;
+	transform: rotate(45deg);
+	content: "";
+}
+
+.credits {
+  color: #FFFFFF;
+  background: #1D8888;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+  transition: color .3s;
+}
+
+.link:hover {
+  opacity: .8;
+}
+
+.link:active {
+  opacity: .5;
+}
+
+.link:focus {
+  outline:0;
+  opacity: .5;
+}
+
+.heart {
+  margin: 0 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #DDE00B;
+  position: relative;
+  display: inline-block;
+  animation: pulse .5s infinite alternate ease-in;
+}
+
+.heart:before {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #DDE00B;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  content: "";
+}
+
+.heart:after {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #DDE00B;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  content: "";
+}
+
+@keyframes pulse {
+    from {transform: rotate(-135deg) scale(1);}
+    to   {transform: rotate(-135deg) scale(1.2);}
 }
