@@ -15,6 +15,7 @@ const Pomodoro = React.createClass({
 
   componentDidMount() {
     this.setTime(1500);
+    Notification.requestPermission();
   },
 
   elapseTime() {
