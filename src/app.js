@@ -33,6 +33,14 @@ const Pomodoro = React.createClass({
     return timeFormated;
   },
 
+  formatType(timeType) {
+    let timeTypeFormated;
+    if(timeType == 1500){timeTypeFormated = "code";}
+    if(timeType == 300){timeTypeFormated = "social";}
+    if(timeType == 900){timeTypeFormated = "coffee";}
+    return timeTypeFormated;
+  },
+
   play() {
     clearInterval(this.interval);
     this.interval = setInterval(this.elapseTime, 1000);
@@ -74,16 +82,55 @@ const Pomodoro = React.createClass({
 
   render() {
     return (
-      <div>
-        <span>{this.format(this.state.time)}</span>
-        <button onClick={this.setTime.bind(this, 1500)}>Code</button>
-        <button onClick={this.setTime.bind(this, 300)}>Social</button>
-        <button onClick={this.setTime.bind(this, 900)}>Coffee</button>
-        <button onClick={this.play}>Play</button>
-        <button onClick={this.reset.bind(this, this.state.time)}>Pause</button>
-        <input type="checkbox" ref="notification"/>Notification
-        <input type="checkbox" ref="audio"/>Sound
-        <input type="checkbox" ref="vibrate"/>Vibration
+      <div className="pomodoro">
+
+        <div className="main">
+
+          <div className="container display">
+            <span className="time">{this.format(this.state.time)} </span>
+            <span className="timeType">The {this.formatType(this.state.timeType)} time!</span>
+          </div>
+
+          <div className="container">
+            <button className="btn" onClick={this.setTime.bind(this, 1500)}>Code</button>
+            <button className="btn" onClick={this.setTime.bind(this, 300)}>Social</button>
+            <button className="btn" onClick={this.setTime.bind(this, 900)}>Coffee</button>
+          </div>
+
+        </div>
+
+        <div class="bottomBar">
+
+          <div className="controls">
+            <div className="container">
+              <div className="controlsPlay">
+                <button className="play" onClick={this.play}></button>
+                <button className="stop" onClick={this.reset.bind(this, this.state.time)}></button>
+              </div>
+              <div className="controlsCheck">
+                <span className="check">
+                  <input type="checkbox" ref="notification" id="notification"/>
+                  <label for="notification"></label>
+                  <span className="checkTitle" >Notification</span>
+                </span>
+                <span className="check">
+                  <input type="checkbox" ref="audio" id="audio"/>
+                  <label for="audio"></label>
+                  <span className="checkTitle">Sound</span>
+                </span>
+                <span className="check">
+                  <input type="checkbox" ref="vibrate" id="vibrate"/>
+                  <label for="vibrate"></label>
+                  <span className="checkTitle">Vibration</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <footer className="credits">Made with <span className="heart"></span> by <a href="https://github.com/afonsopacifer" className="link" target="_blank">@afonsopacifer</a></footer>
+
+        </div>
+
       </div>
     )
   }
