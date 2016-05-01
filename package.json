@@ -10,7 +10,8 @@
     "url": "http://afonsopacifer.com"
   },
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot"
+    "start": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot",
+    "build": "NODE_ENV='production' ./node_modules/.bin/webpack"
   },
   "devDependencies": {
     "babel-core": "^6.7.7",
