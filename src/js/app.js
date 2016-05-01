@@ -44,6 +44,7 @@ const Pomodoro = React.createClass({
   },
 
   play() {
+    if(this.state.play) { return false; }
     clearInterval(this.interval);
     this.interval = setInterval(this.elapseTime, 1000);
     this.setState({play: true});
