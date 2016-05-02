@@ -2,6 +2,8 @@
 
 # React Pomodoro
 
+[![release](https://img.shields.io/badge/release-v0.1.0-green.svg)](https://github.com/afonsopacifer/react-pomodoro/archive/0.1.0.zip)
+
 > Pomodoro timer for developers.
 
 ## Features
