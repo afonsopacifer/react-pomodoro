@@ -2,6 +2,7 @@ import React from "react";
 import ReactDom from "react-dom";
 import Footer from "./footer.js";
 import GithubCorner from "react-github-corner";
+import Title from 'react-title-component'
 
 const Pomodoro = React.createClass({
 
@@ -9,7 +10,8 @@ const Pomodoro = React.createClass({
     return {
       time: 0,
       play: false,
-      timeType: 0
+      timeType: 0,
+      title: ''
     };
   },
 
@@ -25,7 +27,7 @@ const Pomodoro = React.createClass({
     }
     if (this.state.play === true) {
       let newState = this.state.time - 1;
-      this.setState({time: newState});
+      this.setState({time: newState, title: this.getTitle(newState)});
     }
   },
 
@@ -59,7 +61,13 @@ const Pomodoro = React.createClass({
 
   setTime(newTime) {
     this.reset(newTime);
-    this.setState({time: newTime, timeType: newTime});
+    this.setState({time: newTime, timeType: newTime, title: this.getTitle(newTime)});
+  },
+
+  getTitle(time) {
+    time = typeof time === 'undefined' ? this.state.time : time;
+    let _title = this.format(time) + ' | Pomodoro timer';
+    return _title;
   },
 
   alert() {
@@ -99,6 +107,8 @@ const Pomodoro = React.createClass({
           bannerColor="#2BA0A0"
           octoColor="#272727"
         />
+
+        <Title render={this.state.title} />
 
         {/* Main section
         ------------------------------- */}
