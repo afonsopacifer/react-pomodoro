@@ -1,6 +1,6 @@
 {
   "name": "react-pomodoro",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "Pomodoro timer for developers.",
   "license": "MIT",
   "main": "webpack.config.js",
@@ -11,7 +11,8 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot",
-    "build": "NODE_ENV='production' ./node_modules/.bin/webpack"
+    "build": "NODE_ENV='production' ./node_modules/.bin/webpack",
+     "deploy": "git push origin `git subtree split --prefix src master`:gh-pages --force"
   },
   "devDependencies": {
     "babel-core": "^6.7.7",
@@ -30,6 +31,7 @@
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-github-corner": "^0.2.0",
-    "react-localstorage": "^0.2.9"
+    "react-localstorage": "^0.2.9",
+    "react-title-component": "^1.0.1"
   }
 }

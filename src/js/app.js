@@ -3,26 +3,36 @@ import ReactDom from "react-dom";
 import Footer from "./footer.js";
 import GithubCorner from "react-github-corner";
 import MixinLocalStorage from "react-localstorage";
+import Title from 'react-title-component';
 
-const Pomodoro = React.createClass({
+class Pomodoro extends React.Component {
 
-  getInitialState () {
-    return {
+  constructor() {
+    super();
+    this.state = {
       time: 0,
       play: false,
       timeType: 0,
       notification: false,
       vibrate: false,
-      audio: false
+      audio: false,
+      title: ''
     };
-  },
+    // Bind early, avoid function creation on render loop
+    this.setTimeForCode = this.setTime.bind(this, 1500);
+    this.setTimeForSocial = this.setTime.bind(this, 300);
+    this.setTimeForCoffee = this.setTime.bind(this, 900);
+    this.reset = this.reset.bind(this);
+    this.play = this.play.bind(this);
+    this.elapseTime = this.elapseTime.bind(this);
+  }
 
   mixins: [MixinLocalStorage],
 
   componentDidMount() {
     this.setTime(1500);
     Notification.requestPermission();
-  },
+  }
 
   elapseTime() {
     if (this.state.time === 0) {
@@ -31,16 +41,16 @@ const Pomodoro = React.createClass({
     }
     if (this.state.play === true) {
       let newState = this.state.time - 1;
-      this.setState({time: newState});
+      this.setState({time: newState, title: this.getTitle(newState)});
     }
-  },
+  }
 
   format(seconds) {
     let m = Math.floor(seconds % 3600 / 60);
     let s = Math.floor(seconds % 3600 % 60);
     let timeFormated = ((m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s;
     return timeFormated;
-  },
+  }
 
   formatType(timeType) {
     let timeTypeFormated;
@@ -48,25 +58,31 @@ const Pomodoro = React.createClass({
     if(timeType === 300){timeTypeFormated = "social";}
     if(timeType === 900){timeTypeFormated = "coffee";}
     return timeTypeFormated;
-  },
+  }
 
   play() {
     if(this.state.play) { return false; }
     clearInterval(this.interval);
     this.interval = setInterval(this.elapseTime, 1000);
     this.setState({play: true});
-  },
+  }
 
-  reset(resetFor) {
+  reset(resetFor = this.state.time) {
     clearInterval(this.interval);
     let time = this.format(resetFor);
     this.setState({play: false});
-  },
+  }
 
   setTime(newTime) {
     this.reset(newTime);
-    this.setState({time: newTime, timeType: newTime});
-  },
+    this.setState({time: newTime, timeType: newTime, title: this.getTitle(newTime)});
+  }
+
+  getTitle(time) {
+    time = typeof time === 'undefined' ? this.state.time : time;
+    let _title = this.format(time) + ' | Pomodoro timer';
+    return _title;
+  }
 
   save(option){
     this.setState({[option.target.id]: option.target.checked});
@@ -99,7 +115,7 @@ const Pomodoro = React.createClass({
         });
       }
     }
-  },
+  }
 
   render() {
     return (
@@ -109,6 +125,8 @@ const Pomodoro = React.createClass({
           bannerColor="#2BA0A0"
           octoColor="#272727"
         />
+
+        <Title render={this.state.title} />
 
         {/* Main section
         ------------------------------- */}
@@ -120,9 +138,9 @@ const Pomodoro = React.createClass({
           </div>
 
           <div className="container">
-            <button className="btn" onClick={this.setTime.bind(this, 1500)}>Code</button>
-            <button className="btn" onClick={this.setTime.bind(this, 300)}>Social</button>
-            <button className="btn" onClick={this.setTime.bind(this, 900)}>Coffee</button>
+            <button className="btn" onClick={this.setTimeForCode}>Code</button>
+            <button className="btn" onClick={this.setTimeForSocial}>Social</button>
+            <button className="btn" onClick={this.setTimeForCoffee}>Coffee</button>
           </div>
 
         </div> {/* main */}
@@ -136,7 +154,7 @@ const Pomodoro = React.createClass({
 
               <div className="controlsPlay">
                 <button className="play btnIcon" onClick={this.play}></button>
-                <button className="stop btnIcon" onClick={this.reset.bind(this, this.state.time)}></button>
+                <button className="stop btnIcon" onClick={this.reset}></button>
               </div>
 
               <div className="controlsCheck">
@@ -171,7 +189,6 @@ const Pomodoro = React.createClass({
       </div> /* bottomBar */
     )
   }
-
-});
+}
 
 ReactDom.render(<Pomodoro/>, document.getElementById('app'));
