@@ -151,19 +151,19 @@ class Pomodoro extends React.Component {
 
                 <span className="check">
                   <input type="checkbox" ref="notification" id="notification"/>
-                  <label for="notification"></label>
+                  <label htmlFor="notification"></label>
                   <span className="checkTitle" >Notification</span>
                 </span>
 
                 <span className="check">
                   <input type="checkbox" ref="audio" id="audio"/>
-                  <label for="audio"></label>
+                  <label htmlFor="audio"></label>
                   <span className="checkTitle">Sound</span>
                 </span>
 
                 <span className="check">
                   <input type="checkbox" ref="vibrate" id="vibrate"/>
-                  <label for="vibrate"></label>
+                  <label htmlFor="vibrate"></label>
                   <span className="checkTitle">Vibration</span>
                 </span>
 
