@@ -2,7 +2,8 @@ import React from "react";
 import ReactDom from "react-dom";
 import Footer from "./footer.js";
 import GithubCorner from "react-github-corner";
-import Title from 'react-title-component'
+import MixinLocalStorage from "react-localstorage";
+import Title from 'react-title-component';
 
 class Pomodoro extends React.Component {
 
@@ -12,6 +13,9 @@ class Pomodoro extends React.Component {
       time: 0,
       play: false,
       timeType: 0,
+      notification: false,
+      vibrate: false,
+      audio: false,
       title: ''
     };
     // Bind early, avoid function creation on render loop
@@ -22,6 +26,8 @@ class Pomodoro extends React.Component {
     this.play = this.play.bind(this);
     this.elapseTime = this.elapseTime.bind(this);
   }
+
+  mixins: [MixinLocalStorage],
 
   componentDidMount() {
     this.setTime(1500);
@@ -78,19 +84,23 @@ class Pomodoro extends React.Component {
     return _title;
   }
 
+  save(option){
+    this.setState({[option.target.id]: option.target.checked});
+  },
+
   alert() {
     // vibration
-    if(this.refs.vibrate.checked) {
+    if(this.state.vibrate) {
       window.navigator.vibrate(1000);
     }
     // audio
-    if(this.refs.audio.checked) {
+    if(this.state.audio) {
       let audio = new Audio('songs/alarm.mp3');
       audio.play();
       setTimeout(()=> audio.pause(), 1400);
     }
     // notification
-    if(this.refs.notification.checked) {
+    if(this.state.notification) {
       if (this.state.timeType === 1500) {
         let notification = new Notification("Relax :)", {
           icon: "img/coffee.png",
@@ -150,20 +160,20 @@ class Pomodoro extends React.Component {
               <div className="controlsCheck">
 
                 <span className="check">
-                  <input type="checkbox" ref="notification" id="notification"/>
-                  <label htmlFor="notification"></label>
+                  <input type="checkbox" ref="notification" id="notification" checked={this.state.notification} onChange={this.save}/>
+                  <label for="notification"></label>
                   <span className="checkTitle" >Notification</span>
                 </span>
 
                 <span className="check">
-                  <input type="checkbox" ref="audio" id="audio"/>
-                  <label htmlFor="audio"></label>
+                  <input type="checkbox" ref="audio" id="audio" checked={this.state.audio} onChange={this.save}/>
+                  <label for="audio"></label>
                   <span className="checkTitle">Sound</span>
                 </span>
 
                 <span className="check">
-                  <input type="checkbox" ref="vibrate" id="vibrate"/>
-                  <label htmlFor="vibrate"></label>
+                  <input type="checkbox" ref="vibrate" id="vibrate" checked={this.state.vibrate} onChange={this.save}/>
+                  <label for="vibrate"></label>
                   <span className="checkTitle">Vibration</span>
                 </span>
 
