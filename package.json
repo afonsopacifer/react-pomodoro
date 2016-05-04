@@ -31,7 +31,6 @@
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-github-corner": "^0.2.0",
-    "react-localstorage": "^0.2.9",
     "react-title-component": "^1.0.1"
   }
 }
