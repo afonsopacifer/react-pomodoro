@@ -2,7 +2,8 @@ import React from "react";
 import ReactDom from "react-dom";
 import Footer from "./footer.js";
 import GithubCorner from "react-github-corner";
-import Title from 'react-title-component'
+import Title from 'react-title-component';
+import Mousetrap from 'mousetrap';
 
 class Pomodoro extends React.Component {
 
@@ -25,6 +26,7 @@ class Pomodoro extends React.Component {
 
   componentDidMount() {
     this.setTime(1500);
+    this.startShortcuts();
     Notification.requestPermission();
   }
 
@@ -46,12 +48,23 @@ class Pomodoro extends React.Component {
     return timeFormated;
   }
 
+  getFormatTypes() {
+    return [
+      {type: "code", time: 1500},
+      {type: "social", time: 300},
+      {type: "coffee", time: 900}
+    ];
+  }
+
   formatType(timeType) {
-    let timeTypeFormated;
-    if(timeType === 1500){timeTypeFormated = "code";}
-    if(timeType === 300){timeTypeFormated = "social";}
-    if(timeType === 900){timeTypeFormated = "coffee";}
-    return timeTypeFormated;
+    let timeTypes = this.getFormatTypes();
+    for(let i=0; i<timeTypes.length; i++) {
+      let timeObj = timeTypes[i];
+      if(timeObj.time === timeType) {
+        return timeObj.type;
+      }
+    }
+    return null;
   }
 
   play() {
@@ -67,6 +80,14 @@ class Pomodoro extends React.Component {
     this.setState({play: false});
   }
 
+  togglePlay() {
+    if(this.state.play) {
+      this.reset();
+    } else {
+      this.play();
+    }
+  }
+
   setTime(newTime) {
     this.reset(newTime);
     this.setState({time: newTime, timeType: newTime, title: this.getTitle(newTime)});
@@ -76,6 +97,32 @@ class Pomodoro extends React.Component {
     time = typeof time === 'undefined' ? this.state.time : time;
     let _title = this.format(time) + ' | Pomodoro timer';
     return _title;
+  }
+
+  startShortcuts() {
+    Mousetrap.bind('space', this.togglePlay.bind(this));
+    Mousetrap.bind('ctrl+left', this.toggleMode.bind(this,-1));
+    Mousetrap.bind('ctrl+right', this.toggleMode.bind(this,1));
+  }
+
+  toggleMode(goto_direction) {
+    let timeTypes = this.getFormatTypes();
+    let current_mode_position = -1;
+    
+    for(let i=0; i<timeTypes.length; i++) {
+      let timeObj = timeTypes[i];
+      if(timeObj.time === this.state.timeType) {
+        current_mode_position = i;
+        break;
+      }
+    }
+    
+    if(current_mode_position !== -1) {
+      let new_mode = timeTypes[current_mode_position + goto_direction];
+      if(new_mode) {
+        this.setTime(new_mode.time);
+      }
+    }
   }
 
   alert() {
