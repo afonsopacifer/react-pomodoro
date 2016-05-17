@@ -107,12 +107,12 @@ body {
 
 .btnIcon {
   border: 0;
-  background-color: #2BA0A0;
+  background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-  width: 50px;
-  height: 50px;
-  background-size: 40px;
+  width: 60px;
+  height: 60px;
+  background-size: 50px;
   -webkit-transition: opacity .3s;
   transition: opacity .3s;
 }
@@ -147,6 +147,18 @@ body {
   padding: 2.5px 0;
 }
 
+.controlsLink {
+  line-height: 40px;
+}
+.controlsLink a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+.controlsLink a:hover, .controlsLink a:focus {
+  text-decoration: underline;
+}
+
 .controlsCheck {
   margin-left: auto;
   display: -webkit-box;
@@ -178,6 +190,7 @@ body {
   margin: 0 10px;
   -webkit-transition: color .3s;
   transition: color .3s;
+  line-height: 40px;
 }
 
 @media (max-width: 500px) {

@@ -127,10 +127,17 @@ class Pomodoro extends React.Component {
             <span className="timeType">The {this.formatType(this.state.timeType)} time!</span>
           </div>
 
-          <div className="container">
+          <div className="container display">
             <button className="btn" onClick={this.setTimeForCode}>Code</button>
             <button className="btn" onClick={this.setTimeForSocial}>Social</button>
             <button className="btn" onClick={this.setTimeForCoffee}>Coffee</button>
+          </div>
+
+          <div className="container">   
+            <div className="controlsPlay">
+              <button className="play btnIcon" onClick={this.play}></button>
+              <button className="stop btnIcon" onClick={this.reset}></button>
+            </div>
           </div>
 
         </div> {/* main */}
@@ -142,9 +149,8 @@ class Pomodoro extends React.Component {
           <div className="controls">
             <div className="container">
 
-              <div className="controlsPlay">
-                <button className="play btnIcon" onClick={this.play}></button>
-                <button className="stop btnIcon" onClick={this.reset}></button>
+              <div className="controlsLink">
+                <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank">What is Pomodoro?</a>
               </div>
 
               <div className="controlsCheck">
