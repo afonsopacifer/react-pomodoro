@@ -12,7 +12,7 @@
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot",
     "build": "NODE_ENV='production' ./node_modules/.bin/webpack",
-     "deploy": "git push origin `git subtree split --prefix src master`:gh-pages --force"
+    "deploy": "git push origin `git subtree split --prefix src master`:gh-pages --force"
   },
   "devDependencies": {
     "babel-core": "^6.7.7",
@@ -28,6 +28,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "mousetrap": "^1.5.3",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-github-corner": "^0.2.0",
