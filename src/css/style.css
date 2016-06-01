@@ -12,23 +12,24 @@ body {
   background-color: #272727;
 }
 
-.pomodoro {
-  height: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+@media (min-width: 500px) {
+  .pomodoro {
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
-
 /* Main section
 ------------------------------- */
 .main {
@@ -37,7 +38,7 @@ body {
 
 @media (max-width: 500px) {
   .main {
-    margin-bottom: 258px;
+    margin: 40px 0;
   }
 }
 
@@ -140,6 +141,12 @@ body {
   position: absolute;
   width: 100%;
   bottom: 0;
+}
+
+@media (max-width: 500px) {
+  .bottomBar {
+    position: relative;
+  }
 }
 
 .controls {
