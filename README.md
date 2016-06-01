@@ -1,7 +1,7 @@
 # [React Pomodoro](http://afonsopacifer.github.io/react-pomodoro/)
 
 [![Build Status](https://travis-ci.org/afonsopacifer/react-pomodoro.svg?branch=master)](https://travis-ci.org/afonsopacifer/react-pomodoro)
-[![release](https://img.shields.io/badge/release-v0.4.1-green.svg)](https://github.com/afonsopacifer/react-pomodoro/archive/0.4.1.zip)
+[![release](https://img.shields.io/badge/release-v0.4.1-brightgreen.svg)](https://github.com/afonsopacifer/react-pomodoro/archive/0.4.1.zip)
 [![Dependency Status](https://david-dm.org/afonsopacifer/react-pomodoro.svg)](https://david-dm.org/afonsopacifer/react-pomodoro)
 [![devDependency Status](https://david-dm.org/afonsopacifer/react-pomodoro/dev-status.svg)](https://david-dm.org/afonsopacifer/react-pomodoro#info=devDependencies)
 
@@ -64,7 +64,7 @@ Go to: [localhost:8080](http://localhost:8080/)
 ## Tasks available
 
 - `$ npm start` - Run webpack and webpack-dev-server
-- `$ npm eun lint` - ESlint :D
+- `$ npm run lint` - ESlint :D
 - `$ npm run build` - Generates the bundle.js
 - `$ npm run deploy` - Push for gh-pages
 
