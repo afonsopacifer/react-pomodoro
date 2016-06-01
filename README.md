@@ -1,11 +1,14 @@
 # React Pomodoro
 
-[![release](https://img.shields.io/badge/release-v0.3.0-green.svg)](https://github.com/afonsopacifer/react-pomodoro/archive/0.3.0.zip)
+[![release](https://img.shields.io/badge/release-v0.4.0-green.svg)](https://github.com/afonsopacifer/react-pomodoro/archive/0.4.0.zip)
 
 > Pomodoro timer for developers.
 
+![homescreen](homescreen.png)
+
 ## Features
 
+- **Add to homescreen**
 - **Offline support**
 - **Times available:**
   - Timer for code - 25min
