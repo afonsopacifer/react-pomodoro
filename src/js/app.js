@@ -112,7 +112,7 @@ class Pomodoro extends React.Component {
   toggleMode(goto_direction) {
     let timeTypes = this.getFormatTypes();
     let current_mode_position = -1;
-    
+
     for(let i=0; i<timeTypes.length; i++) {
       let timeObj = timeTypes[i];
       if(timeObj.time === this.state.timeType) {
@@ -120,7 +120,7 @@ class Pomodoro extends React.Component {
         break;
       }
     }
-    
+
     if(current_mode_position !== -1) {
       let new_mode = timeTypes[current_mode_position + goto_direction];
       if(new_mode) {
@@ -184,7 +184,7 @@ class Pomodoro extends React.Component {
             <button className="btn" onClick={this.setTimeForCoffee}>Coffee</button>
           </div>
 
-          <div className="container">   
+          <div className="container">
             <div className="controlsPlay">
               <button className="play btnIcon" onClick={this.play}></button>
               <button className="stop btnIcon" onClick={this.reset}></button>
