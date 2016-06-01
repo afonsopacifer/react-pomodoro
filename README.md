@@ -1,11 +1,12 @@
 # React Pomodoro
 
-[![release](https://img.shields.io/badge/release-v0.2.1-green.svg)](https://github.com/afonsopacifer/react-pomodoro/archive/0.2.1.zip)
+[![release](https://img.shields.io/badge/release-v0.3.0-green.svg)](https://github.com/afonsopacifer/react-pomodoro/archive/0.3.0.zip)
 
 > Pomodoro timer for developers.
 
 ## Features
 
+- **Offline support**
 - **Times available:**
   - Timer for code - 25min
   - Timer for social - 5min
@@ -22,6 +23,10 @@
 - **Basic controls:**
   - Play button
   - Pause button
+- **Keyboard Shortcuts**
+  - Space: Play
+  - Ctrl + Left: Toggle mode
+  - Ctrl + Right: Toggle mode
 
 ## Versioning
 
