@@ -1,7 +1,8 @@
-# React Pomodoro
+# [React Pomodoro](http://afonsopacifer.github.io/react-pomodoro/)
 
 [![release](https://img.shields.io/badge/release-v0.4.0-green.svg)](https://github.com/afonsopacifer/react-pomodoro/archive/0.4.0.zip)
-
+[![Dependency Status](https://david-dm.org/afonsopacifer/react-pomodoro.svg)](https://david-dm.org/afonsopacifer/react-pomodoro)
+[![devDependency Status](https://david-dm.org/afonsopacifer/react-pomodoro/dev-status.svg)](https://david-dm.org/afonsopacifer/react-pomodoro#info=devDependencies)
 > Pomodoro timer for developers.
 
 ![homescreen](homescreen.png)
