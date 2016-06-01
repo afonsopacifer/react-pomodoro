@@ -67,10 +67,14 @@ class Pomodoro extends React.Component {
     return null;
   }
 
-  play() {
-    if(this.state.play) { return false; }
+  restartInterval() {
     clearInterval(this.interval);
     this.interval = setInterval(this.elapseTime, 1000);
+  }
+
+  play() {
+    if(this.state.play) { return false; }
+    this.restartInterval();
     this.setState({play: true});
   }
 
@@ -89,8 +93,8 @@ class Pomodoro extends React.Component {
   }
 
   setTime(newTime) {
-    this.reset(newTime);
-    this.setState({time: newTime, timeType: newTime, title: this.getTitle(newTime)});
+    this.restartInterval();
+    this.setState({time: newTime, timeType: newTime, title: this.getTitle(newTime), play: true});
   }
 
   getTitle(time) {
