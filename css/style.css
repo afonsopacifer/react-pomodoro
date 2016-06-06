@@ -1,0 +1,343 @@
+* {
+  box-sizing: border-box;
+}
+
+html,body,#app {
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  background-color: #272727;
+}
+
+@media (min-width: 500px) {
+  .pomodoro {
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+/* Main section
+------------------------------- */
+.main {
+  margin-bottom: 61px; /* For stick footer */
+}
+
+@media (max-width: 500px) {
+  .main {
+    margin: 40px 0;
+  }
+}
+
+.container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+/* Display */
+.display {
+  margin-bottom: 20px;
+}
+
+.time {
+  font-size: 72px;
+  font-weight: 400;
+  color: #fff;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.timeType {
+  display: block;
+  font-size: 24px;
+  color: #2BA0A0;
+  font-weight: 300;
+  width: 100%;
+  text-align: center;
+}
+
+/* Time control */
+.btn {
+  border: 0;
+  background: #2BA0A0;
+  color: #fff;
+  padding: 10px 0;
+  width: 100%;
+  max-width: 110px;
+  margin: 1px;
+  font-weight: 300;
+  -webkit-transition: background .3s;
+  transition: background .3s;
+}
+
+.btn:hover {
+  background: #1D8888;
+}
+
+.btn:active, .btn:focus  {
+  outline:0;
+  background: #5AAFAF;
+}
+
+.btnIcon {
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 60px;
+  height: 60px;
+  background-size: 50px;
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
+}
+
+.btnIcon:hover {
+  opacity: .8;
+}
+
+.btnIcon:active, .btnIcon:focus {
+  outline:0;
+  opacity: .5;
+}
+
+.play {
+  background-image: url("../img/play.svg");
+}
+
+.stop {
+  background-image: url("../img/stop.svg");
+}
+
+/* Bottom section
+------------------------------- */
+.bottomBar {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+@media (max-width: 500px) {
+  .bottomBar {
+    position: relative;
+  }
+}
+
+.controls {
+  background: #2BA0A0;
+  padding: 2.5px 0;
+}
+
+.controlsLink {
+  line-height: 40px;
+}
+.controlsLink a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+.controlsLink a:hover, .controlsLink a:focus {
+  text-decoration: underline;
+}
+
+.controlsCheck {
+  margin-left: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 500px) {
+  .controlsCheck {
+    width: 100%;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin: 20px 0;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+  }
+}
+
+.check {
+  display: inline-block;
+  margin: 0 10px;
+  -webkit-transition: color .3s;
+  transition: color .3s;
+  line-height: 40px;
+}
+
+@media (max-width: 500px) {
+  .check {
+    width: 100%;
+    margin: 10px;
+  }
+}
+
+.checkTitle {
+  color: #fff;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+/* Checkbox style and UI feedback */
+.check input[type='checkbox'] {
+	display: none;
+}
+
+.check label {
+	border: 1px solid #ccc;
+	height: 15px;
+	width: 15px;
+	margin: 0;
+	padding: 0;
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	position: relative;
+}
+
+.check label:hover {
+  cursor: pointer;
+}
+
+.check input[type='checkbox']:checked + label {
+	border: 1px solid #DDE00B;
+}
+
+.check input[type='checkbox']:checked + label:after {
+	background-color: #DDE00B;
+	position: absolute;
+	display: block;
+	bottom: 4px;
+	left: 1px;
+	width: 10px;
+	height: 5px;
+	-webkit-transform: rotate(45deg);
+	        transform: rotate(45deg);
+	content: "";
+}
+
+.check input[type='checkbox']:checked + label:before {
+	background-color: #DDE00B;
+	position: absolute;
+	display: block;
+	bottom: 0px;
+	right: -1px;
+	width: 5px;
+	height: 18px;
+	-webkit-transform: rotate(45deg);
+	        transform: rotate(45deg);
+	content: "";
+}
+
+.credits {
+  color: #FFFFFF;
+  background: #1D8888;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: color .3s;
+  transition: color .3s;
+}
+
+.link:hover {
+  opacity: .8;
+}
+
+.link:active. .link:focus {
+  outline:0;
+  opacity: .5;
+}
+
+/* Pulse heart */
+.heart {
+  margin: 0 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #DDE00B;
+  position: relative;
+  display: inline-block;
+  -webkit-animation: pulse .5s infinite alternate ease-in;
+          animation: pulse .5s infinite alternate ease-in;
+}
+
+.heart:before {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #DDE00B;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  content: "";
+}
+
+.heart:after {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #DDE00B;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  content: "";
+}
+
+@-webkit-keyframes pulse {
+    from {-webkit-transform: rotate(-135deg) scale(1);transform: rotate(-135deg) scale(1);}
+    to   {-webkit-transform: rotate(-135deg) scale(1.2);transform: rotate(-135deg) scale(1.2);}
+}
+
+@keyframes pulse {
+    from {-webkit-transform: rotate(-135deg) scale(1);transform: rotate(-135deg) scale(1);}
+    to   {-webkit-transform: rotate(-135deg) scale(1.2);transform: rotate(-135deg) scale(1.2);}
+}

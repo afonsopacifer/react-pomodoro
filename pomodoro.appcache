@@ -1,0 +1,18 @@
+CACHE MANIFEST
+# 2016-06-01:v1
+
+CACHE:
+/
+/index.html
+/bundle.js
+/css/style.css
+/img/code.png
+/img/coffee.png
+/img/favicon.png
+/img/play.svg
+/img/share.png
+/img/stop.svg
+/songs/alarm.mp3
+
+NETWORK:
+*
