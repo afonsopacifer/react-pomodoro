@@ -10,10 +10,10 @@
     "url": "http://afonsopacifer.com"
   },
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot",
-    "lint": "./node_modules/.bin/eslint src/js/app.js",
+    "start": "./node_modules/.bin/webpack-dev-server --content-base app --inline --hot",
+    "lint": "./node_modules/.bin/eslint app/js/app.js",
     "build": "NODE_ENV='production' ./node_modules/.bin/webpack",
-    "deploy": "git push origin `git subtree split --prefix src master`:gh-pages --force"
+    "deploy": "git push origin `git subtree split --prefix app master`:gh-pages --force"
   },
   "devDependencies": {
     "babel-core": "^6.7.7",
