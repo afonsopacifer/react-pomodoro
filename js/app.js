@@ -1,9 +1,11 @@
-import React from "react";
-import ReactDom from "react-dom";
-import Footer from "./footer.js";
-import GithubCorner from "react-github-corner";
+import React from 'react';
+import ReactDom from 'react-dom';
+
 import Title from 'react-title-component';
 import Mousetrap from 'mousetrap';
+import GithubCorner from 'react-github-corner';
+
+import Footer from './../components/Footer/Footer';
 
 class Pomodoro extends React.Component {
 
