@@ -25,7 +25,7 @@ class Pomodoro extends React.Component {
   }
 
   componentDidMount() {
-    this.setTime(1500);
+    this.setDefaultTime();
     this.startShortcuts();
     Notification.requestPermission();
   }
@@ -73,9 +73,13 @@ class Pomodoro extends React.Component {
   }
 
   play() {
-    if(this.state.play) { return false; }
+    if (true === this.state.play) return; 
+
     this.restartInterval();
-    this.setState({play: true});
+    
+    this.setState({ 
+      play: true 
+    });
   }
 
   reset(resetFor = this.state.time) {
@@ -85,16 +89,32 @@ class Pomodoro extends React.Component {
   }
 
   togglePlay() {
-    if(this.state.play) {
-      this.reset();
-    } else {
-      this.play();
-    }
+    if (true === this.state.play)
+      return this.reset();
+
+    return this.play();
   }
 
   setTime(newTime) {
     this.restartInterval();
-    this.setState({time: newTime, timeType: newTime, title: this.getTitle(newTime), play: true});
+    
+    this.setState({
+      time: newTime, 
+      timeType: newTime, 
+      title: this.getTitle(newTime), 
+      play: true
+    });
+  }
+
+  setDefaultTime() {
+    let defaultTime = 1500;
+
+    this.setState({
+      time: defaultTime, 
+      timeType: defaultTime, 
+      title: this.getTitle(defaultTime), 
+      play: false
+    });
   }
 
   getTitle(time) {
