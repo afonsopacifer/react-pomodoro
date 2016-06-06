@@ -9,10 +9,10 @@ import Footer from './../Footer';
 
 describe('Footer', () => {
 
-  it('verify the text content and link are correctly', () => {
+  it('verify the text content are correctly', () => {
 
     const footer = TestUtils.renderIntoDocument(
-    	<Footer />
+      <Footer />
     );
 
     const footerNode = ReactDOM.findDOMNode(footer);
@@ -20,4 +20,16 @@ describe('Footer', () => {
     expect(footerNode.textContent).toEqual('Made with  by @afonsopacifer');
   });
 
+  it('link of github author should be https://github.com/afonsopacifer', () => {
+
+    const footer = TestUtils.renderIntoDocument(
+      <Footer />
+    );
+
+    const linkElement = TestUtils.scryRenderedDOMComponentsWithTag(footer, 'a');
+
+    expect(linkElement.length).toEqual(1);
+    expect(linkElement[0].getAttribute('href')).toEqual('https://github.com/afonsopacifer');
+  });
+  
 });
