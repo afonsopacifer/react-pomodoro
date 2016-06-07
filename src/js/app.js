@@ -125,8 +125,8 @@ class Pomodoro extends React.Component {
 
   startShortcuts() {
     Mousetrap.bind('space', this.togglePlay.bind(this));
-    Mousetrap.bind('ctrl+left', this.toggleMode.bind(this,-1));
-    Mousetrap.bind('ctrl+right', this.toggleMode.bind(this,1));
+    Mousetrap.bind(['ctrl+left', 'meta+left'], this.toggleMode.bind(this,-1));
+    Mousetrap.bind(['ctrl+right', 'meta+right'], this.toggleMode.bind(this,1));
   }
 
   toggleMode(goto_direction) {
