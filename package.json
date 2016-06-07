@@ -14,11 +14,11 @@
     "lint": "./node_modules/.bin/eslint app/js/app.js",
     "build": "NODE_ENV='production' ./node_modules/.bin/webpack",
     "deploy": "git push origin `git subtree split --prefix app master`:gh-pages --force",
-    "test": "jest"
+    "test": "mocha --require ./__tests__/mock-dom.js --compilers js:babel-core/register --recursive app/components"
   },
   "devDependencies": {
+    "babel": "^6.5.2",
     "babel-core": "^6.7.7",
-    "babel-jest": "^12.1.0",
     "babel-loader": "^6.2.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-react-html-attrs": "^2.0.0",
@@ -29,18 +29,11 @@
     "babel-preset-stage-0": "^6.3.13",
     "chai": "^3.5.0",
     "eslint": "^2.11.1",
-    "jest-cli": "^12.1.1",
+    "jsdom": "^9.2.1",
+    "mocha": "^2.5.3",
     "react-addons-test-utils": "^15.1.0",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.1"
-  },
-  "jest": {
-    "moduleFileExtensions": ["js", "jsx"],
-    "unmockedModulePathPatterns": [
-      "./node_modules/react/",
-      "./node_modules/react-dom/",
-      "./node_modules/react-addons-test-utils/"
-    ]
   },
   "dependencies": {
     "mousetrap": "^1.5.3",
