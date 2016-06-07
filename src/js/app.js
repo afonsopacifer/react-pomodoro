@@ -2,7 +2,8 @@ import React from "react";
 import ReactDom from "react-dom";
 import Footer from "./footer.js";
 import GithubCorner from "react-github-corner";
-import Title from 'react-title-component'
+import Title from 'react-title-component';
+import Mousetrap from 'mousetrap';
 
 class Pomodoro extends React.Component {
 
@@ -24,7 +25,8 @@ class Pomodoro extends React.Component {
   }
 
   componentDidMount() {
-    this.setTime(1500);
+    this.setDefaultTime();
+    this.startShortcuts();
     Notification.requestPermission();
   }
 
@@ -42,16 +44,27 @@ class Pomodoro extends React.Component {
   format(seconds) {
     let m = Math.floor(seconds % 3600 / 60);
     let s = Math.floor(seconds % 3600 % 60);
-    let timeFormated = ((m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s;
+    let timeFormated = (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
     return timeFormated;
   }
 
+  getFormatTypes() {
+    return [
+      {type: "code", time: 1500},
+      {type: "social", time: 300},
+      {type: "coffee", time: 900}
+    ];
+  }
+
   formatType(timeType) {
-    let timeTypeFormated;
-    if(timeType === 1500){timeTypeFormated = "code";}
-    if(timeType === 300){timeTypeFormated = "social";}
-    if(timeType === 900){timeTypeFormated = "coffee";}
-    return timeTypeFormated;
+    let timeTypes = this.getFormatTypes();
+    for(let i=0; i<timeTypes.length; i++) {
+      let timeObj = timeTypes[i];
+      if(timeObj.time === timeType) {
+        return timeObj.type;
+      }
+    }
+    return null;
   }
 
   restartInterval() {
@@ -60,9 +73,13 @@ class Pomodoro extends React.Component {
   }
 
   play() {
-    if(this.state.play) { return false; }
+    if (true === this.state.play) return; 
+
     this.restartInterval();
-    this.setState({play: true});
+    
+    this.setState({ 
+      play: true 
+    });
   }
 
   reset(resetFor = this.state.time) {
@@ -71,15 +88,65 @@ class Pomodoro extends React.Component {
     this.setState({play: false});
   }
 
+  togglePlay() {
+    if (true === this.state.play)
+      return this.reset();
+
+    return this.play();
+  }
+
   setTime(newTime) {
     this.restartInterval();
-    this.setState({time: newTime, timeType: newTime, title: this.getTitle(newTime), play: true});
+    
+    this.setState({
+      time: newTime, 
+      timeType: newTime, 
+      title: this.getTitle(newTime), 
+      play: true
+    });
+  }
+
+  setDefaultTime() {
+    let defaultTime = 1500;
+
+    this.setState({
+      time: defaultTime, 
+      timeType: defaultTime, 
+      title: this.getTitle(defaultTime), 
+      play: false
+    });
   }
 
   getTitle(time) {
     time = typeof time === 'undefined' ? this.state.time : time;
     let _title = this.format(time) + ' | Pomodoro timer';
     return _title;
+  }
+
+  startShortcuts() {
+    Mousetrap.bind('space', this.togglePlay.bind(this));
+    Mousetrap.bind('ctrl+left', this.toggleMode.bind(this,-1));
+    Mousetrap.bind('ctrl+right', this.toggleMode.bind(this,1));
+  }
+
+  toggleMode(goto_direction) {
+    let timeTypes = this.getFormatTypes();
+    let current_mode_position = -1;
+
+    for(let i=0; i<timeTypes.length; i++) {
+      let timeObj = timeTypes[i];
+      if(timeObj.time === this.state.timeType) {
+        current_mode_position = i;
+        break;
+      }
+    }
+
+    if(current_mode_position !== -1) {
+      let new_mode = timeTypes[current_mode_position + goto_direction];
+      if(new_mode) {
+        this.setTime(new_mode.time);
+      }
+    }
   }
 
   alert() {
@@ -131,10 +198,17 @@ class Pomodoro extends React.Component {
             <span className="timeType">The {this.formatType(this.state.timeType)} time!</span>
           </div>
 
-          <div className="container">
+          <div className="container display">
             <button className="btn" onClick={this.setTimeForCode}>Code</button>
             <button className="btn" onClick={this.setTimeForSocial}>Social</button>
             <button className="btn" onClick={this.setTimeForCoffee}>Coffee</button>
+          </div>
+
+          <div className="container">
+            <div className="controlsPlay">
+              <button className="play btnIcon" onClick={this.play}></button>
+              <button className="stop btnIcon" onClick={this.reset}></button>
+            </div>
           </div>
 
         </div> {/* main */}
@@ -146,9 +220,8 @@ class Pomodoro extends React.Component {
           <div className="controls">
             <div className="container">
 
-              <div className="controlsPlay">
-                <button className="play btnIcon" onClick={this.play}></button>
-                <button className="stop btnIcon" onClick={this.reset}></button>
+              <div className="controlsLink">
+                <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="_blank">What is Pomodoro?</a>
               </div>
 
               <div className="controlsCheck">
@@ -181,7 +254,7 @@ class Pomodoro extends React.Component {
         </div> {/* bottomBar */}
 
       </div> /* bottomBar */
-    )
+    );
   }
 }
 

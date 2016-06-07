@@ -12,23 +12,24 @@ body {
   background-color: #272727;
 }
 
-.pomodoro {
-  height: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+@media (min-width: 500px) {
+  .pomodoro {
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
-
 /* Main section
 ------------------------------- */
 .main {
@@ -37,7 +38,7 @@ body {
 
 @media (max-width: 500px) {
   .main {
-    margin-bottom: 258px;
+    margin: 40px 0;
   }
 }
 
@@ -107,12 +108,12 @@ body {
 
 .btnIcon {
   border: 0;
-  background-color: #2BA0A0;
+  background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-  width: 50px;
-  height: 50px;
-  background-size: 40px;
+  width: 60px;
+  height: 60px;
+  background-size: 50px;
   -webkit-transition: opacity .3s;
   transition: opacity .3s;
 }
@@ -142,9 +143,27 @@ body {
   bottom: 0;
 }
 
+@media (max-width: 500px) {
+  .bottomBar {
+    position: relative;
+  }
+}
+
 .controls {
   background: #2BA0A0;
   padding: 2.5px 0;
+}
+
+.controlsLink {
+  line-height: 40px;
+}
+.controlsLink a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+.controlsLink a:hover, .controlsLink a:focus {
+  text-decoration: underline;
 }
 
 .controlsCheck {
@@ -178,6 +197,7 @@ body {
   margin: 0 10px;
   -webkit-transition: color .3s;
   transition: color .3s;
+  line-height: 40px;
 }
 
 @media (max-width: 500px) {
