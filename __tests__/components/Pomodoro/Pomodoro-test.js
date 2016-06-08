@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import Pomodoro from './../Pomodoro';
+import Pomodoro from './../../../app/components/Pomodoro/Pomodoro';
 import { mount } from 'enzyme';
 
 import { assert } from 'chai';

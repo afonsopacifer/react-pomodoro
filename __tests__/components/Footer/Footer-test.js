@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import Footer from './../Footer';
+import Footer from './../../../app/components/Footer/Footer';
 
 import { assert } from 'chai';
 
