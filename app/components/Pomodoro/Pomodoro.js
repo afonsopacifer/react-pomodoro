@@ -1,11 +1,13 @@
-import React from "react";
-import ReactDom from "react-dom";
-import Footer from "./footer.js";
-import GithubCorner from "react-github-corner";
+import React from 'react';
+import ReactDom from 'react-dom';
+
 import Title from 'react-title-component';
 import Mousetrap from 'mousetrap';
+import GithubCorner from 'react-github-corner';
 
-class Pomodoro extends React.Component {
+import Footer from './../Footer/Footer';
+
+export default class Pomodoro extends React.Component {
 
   constructor() {
     super();
@@ -193,15 +195,15 @@ class Pomodoro extends React.Component {
         ------------------------------- */}
         <div className="main">
 
-          <div className="container display">
+          <div className="container display timer">
             <span className="time">{this.format(this.state.time)}</span>
             <span className="timeType">The {this.formatType(this.state.timeType)} time!</span>
           </div>
 
-          <div className="container display">
-            <button className="btn" onClick={this.setTimeForCode}>Code</button>
-            <button className="btn" onClick={this.setTimeForSocial}>Social</button>
-            <button className="btn" onClick={this.setTimeForCoffee}>Coffee</button>
+          <div className="container display types">
+            <button className="btn code" onClick={this.setTimeForCode}>Code</button>
+            <button className="btn social" onClick={this.setTimeForSocial}>Social</button>
+            <button className="btn coffee" onClick={this.setTimeForCoffee}>Coffee</button>
           </div>
 
           <div className="container">
@@ -256,6 +258,4 @@ class Pomodoro extends React.Component {
       </div> /* bottomBar */
     );
   }
-}
-
-ReactDom.render(<Pomodoro/>, document.getElementById('app'));
+};
