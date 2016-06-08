@@ -28,6 +28,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.3.13",
     "chai": "^3.5.0",
+    "enzyme": "^2.3.0",
     "eslint": "^2.11.1",
     "jsdom": "^9.2.1",
     "mocha": "^2.5.3",

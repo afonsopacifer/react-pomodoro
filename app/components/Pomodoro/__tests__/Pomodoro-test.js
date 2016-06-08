@@ -4,10 +4,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import Pomodoro from './../Pomodoro';
+import { mount, shallow } from 'enzyme';
 
 import { assert } from 'chai';
 
-describe('Test Pomodoro Component', () => {
+describe('<Pomodoro />', () => {
   var component; 
 
   beforeEach(() => {
@@ -27,5 +28,18 @@ describe('Test Pomodoro Component', () => {
     assert.isFalse(component.refs.audio.checked);
     assert.isFalse(component.refs.vibrate.checked);
     assert.isFalse(component.refs.notification.checked);
+  });
+
+  it('should be two buttons to control the play and pause', () => {
+    let pomodoro  = mount(<Pomodoro />),
+        buttons   = pomodoro.find('div.pomodoro div.controlsPlay button');
+
+    assert.equal(buttons.length, 2);
+
+    let playButton = buttons.find('.play').node,
+        stopButton = buttons.find('.stop').node;
+    
+    assert.isDefined(playButton);
+    assert.isDefined(stopButton);
   });
 });
