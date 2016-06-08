@@ -62,12 +62,36 @@ describe('<Pomodoro />', () => {
     assert.equal(coffeeButton.innerHTML, 'Coffee');
   });
 
-  it('when simulate a click on play the state should be changed', () => {    
+  it('when click on play the state should be changed', () => {    
     let pomodoro    = mount(<Pomodoro />),
         playButton  = pomodoro.find('div.pomodoro div.controlsPlay button.play');
 
     assert.isFalse(pomodoro.node.state.play);
     playButton.simulate('click');
     assert.isTrue(pomodoro.node.state.play);
+  });
+
+  it('when click on social type the states should be changed', () => {    
+    let pomodoro      = mount(<Pomodoro />),
+        socialButton  = pomodoro.find('div.pomodoro div.types button.social');
+
+    socialButton.simulate('click');
+
+    assert.isTrue(pomodoro.node.state.play);
+    assert.equal(pomodoro.node.state.time, 300);
+    assert.equal(pomodoro.node.state.timeType, 300);
+    assert.equal(pomodoro.node.state.title, '05:00 | Pomodoro timer');
+  });
+
+  it('when click on coffee type the states should be changed', () => {    
+    let pomodoro      = mount(<Pomodoro />),
+        coffeeButton  = pomodoro.find('div.pomodoro div.types button.coffee');
+
+    coffeeButton.simulate('click');
+
+    assert.isTrue(pomodoro.node.state.play);
+    assert.equal(pomodoro.node.state.time, 900);
+    assert.equal(pomodoro.node.state.timeType, 900);
+    assert.equal(pomodoro.node.state.title, '15:00 | Pomodoro timer');
   });
 });
