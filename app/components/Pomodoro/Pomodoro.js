@@ -27,7 +27,7 @@ export default class Pomodoro extends React.Component {
   }
 
   componentDidMount() {
-    this.setTime(1500);
+    this.setDefaultTime();
     this.startShortcuts();
     Notification.requestPermission();
   }
@@ -75,9 +75,13 @@ export default class Pomodoro extends React.Component {
   }
 
   play() {
-    if(this.state.play) { return false; }
+    if (true === this.state.play) return; 
+
     this.restartInterval();
-    this.setState({play: true});
+    
+    this.setState({ 
+      play: true 
+    });
   }
 
   reset(resetFor = this.state.time) {
@@ -87,16 +91,32 @@ export default class Pomodoro extends React.Component {
   }
 
   togglePlay() {
-    if(this.state.play) {
-      this.reset();
-    } else {
-      this.play();
-    }
+    if (true === this.state.play)
+      return this.reset();
+
+    return this.play();
   }
 
   setTime(newTime) {
     this.restartInterval();
-    this.setState({time: newTime, timeType: newTime, title: this.getTitle(newTime), play: true});
+    
+    this.setState({
+      time: newTime, 
+      timeType: newTime, 
+      title: this.getTitle(newTime), 
+      play: true
+    });
+  }
+
+  setDefaultTime() {
+    let defaultTime = 1500;
+
+    this.setState({
+      time: defaultTime, 
+      timeType: defaultTime, 
+      title: this.getTitle(defaultTime), 
+      play: false
+    });
   }
 
   getTitle(time) {
@@ -107,8 +127,8 @@ export default class Pomodoro extends React.Component {
 
   startShortcuts() {
     Mousetrap.bind('space', this.togglePlay.bind(this));
-    Mousetrap.bind('ctrl+left', this.toggleMode.bind(this,-1));
-    Mousetrap.bind('ctrl+right', this.toggleMode.bind(this,1));
+    Mousetrap.bind(['ctrl+left', 'meta+left'], this.toggleMode.bind(this,-1));
+    Mousetrap.bind(['ctrl+right', 'meta+right'], this.toggleMode.bind(this,1));
   }
 
   toggleMode(goto_direction) {
