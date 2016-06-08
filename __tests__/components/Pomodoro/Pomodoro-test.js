@@ -62,19 +62,12 @@ describe('<Pomodoro />', () => {
     assert.equal(coffeeButton.innerHTML, 'Coffee');
   });
 
-  it('when click on play button should be start a timer', (done) => {    
+  it('when simulate a click on play the state should be changed', () => {    
     let pomodoro    = mount(<Pomodoro />),
         playButton  = pomodoro.find('div.pomodoro div.controlsPlay button.play');
 
     assert.isFalse(pomodoro.node.state.play);
-    assert.equal(pomodoro.node.state.time, 1500);
-    
     playButton.simulate('click');
-
-    setTimeout(() => {
-      assert.isTrue(pomodoro.node.state.play);
-      assert.equal(pomodoro.node.state.time, 1499);
-      done();
-    }, 1000);
+    assert.isTrue(pomodoro.node.state.play);
   });
 });
