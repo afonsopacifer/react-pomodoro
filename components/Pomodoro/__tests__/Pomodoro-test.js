@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import Pomodoro from './../Pomodoro';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { assert } from 'chai';
 
@@ -41,5 +41,24 @@ describe('<Pomodoro />', () => {
     
     assert.isDefined(playButton);
     assert.isDefined(stopButton);
+  });
+
+  it('should be three buttons to change pomodoro type', () => {
+    let pomodoro  = mount(<Pomodoro />),
+        buttons   = pomodoro.find('div.pomodoro div.main div.types button');
+
+    assert.equal(buttons.length, 3);
+
+    let codeButton    = buttons.find('.code').node,
+        socialButton  = buttons.find('.social').node,
+        coffeeButton  = buttons.find('.coffee').node;
+  
+    assert.isDefined(codeButton);
+    assert.isDefined(socialButton);
+    assert.isDefined(coffeeButton);
+
+    assert.equal(codeButton.innerHTML, 'Code');
+    assert.equal(socialButton.innerHTML, 'Social');
+    assert.equal(coffeeButton.innerHTML, 'Coffee');
   });
 });

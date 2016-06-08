@@ -200,10 +200,10 @@ export default class Pomodoro extends React.Component {
             <span className="timeType">The {this.formatType(this.state.timeType)} time!</span>
           </div>
 
-          <div className="container display">
-            <button className="btn" onClick={this.setTimeForCode}>Code</button>
-            <button className="btn" onClick={this.setTimeForSocial}>Social</button>
-            <button className="btn" onClick={this.setTimeForCoffee}>Coffee</button>
+          <div className="container display types">
+            <button className="btn code" onClick={this.setTimeForCode}>Code</button>
+            <button className="btn social" onClick={this.setTimeForSocial}>Social</button>
+            <button className="btn coffee" onClick={this.setTimeForCoffee}>Coffee</button>
           </div>
 
           <div className="container">
