@@ -18,7 +18,7 @@ describe('Test Pomodoro Component', () => {
 
   it('verify the default state are correctly', () => {
     assert.equal(component.state.time, 1500);
-    assert.equal(component.state.play, true);
+    assert.equal(component.state.play, false);
     assert.equal(component.state.timeType, 1500);
     assert.equal(component.state.title, '25:00 | Pomodoro timer');
   });
