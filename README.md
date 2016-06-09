@@ -31,8 +31,8 @@
   - Pause button
 - **Keyboard Shortcuts**
   - Space: Play
-  - Ctrl + Left: Toggle mode
-  - Ctrl + Right: Toggle mode
+  - Ctrl/Command + Left: Toggle mode
+  - Ctrl/Command + Right: Toggle mode
 
 ## Versioning
 
