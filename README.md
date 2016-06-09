@@ -65,8 +65,10 @@ Go to: [localhost:8080](http://localhost:8080/)
 
 - `$ npm start` - Run webpack and webpack-dev-server
 - `$ npm run lint` - ESlint :D
+- `$ npm run test` - Run mocha tests
 - `$ npm run build` - Generates the bundle.js
 - `$ npm run deploy` - Push for gh-pages
+
 
 ## Contributing
 Find on our [issues](https://github.com/afonsopacifer/react-pomodoro/issues/) the next steps of the project ;)
