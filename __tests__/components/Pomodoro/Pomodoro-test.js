@@ -95,3 +95,45 @@ describe('<Pomodoro /> tests behavior of buttons', () => {
     assert.equal(component.node.state.title, '15:00 | Pomodoro timer');
   });
 });
+
+describe('<Pomodoro /> check if items on localStorage should be exists', () => {
+  var component; 
+
+  beforeEach(() => {
+    component = mount(<Pomodoro />);
+  });
+
+  afterEach(() => {
+    localStorage.clear();
+  });
+
+  it('after checked the notification input', () => {
+    let notificationInput = component.find('div.pomodoro div.controlsCheck #notification');
+
+    let item = 'react-pomodoro-notification';
+
+    assert.isUndefined(localStorage.getItem(item));
+    notificationInput.simulate('change', { target: { checked: true } });
+    assert.equal(localStorage.getItem(item), 'true');
+  });
+
+  it('after checked the audio input', () => {
+    let audioInput = component.find('div.pomodoro div.controlsCheck #audio');
+
+    let item = 'react-pomodoro-audio';
+    
+    assert.isUndefined(localStorage.getItem(item));
+    audioInput.simulate('change', { target: { checked: true } });
+    assert.equal(localStorage.getItem(item), 'true');
+  });
+
+  it('after checked the vibrate input', () => {
+    let audioInput = component.find('div.pomodoro div.controlsCheck #vibrate');
+
+    let item = 'react-pomodoro-vibrate';
+
+    assert.isUndefined(localStorage.getItem(item));
+    audioInput.simulate('change', { target: { checked: true } });
+    assert.equal(localStorage.getItem(item), 'true');
+  });
+});
