@@ -7,7 +7,7 @@ import Footer from './../../../app/components/Footer/Footer';
 
 import { assert } from 'chai';
 
-describe('Test Footer Component', () => {
+describe('<Footer /> tests of node elements', () => {
   var component; 
 
   beforeEach(function() {
@@ -16,13 +16,7 @@ describe('Test Footer Component', () => {
     );
   });
 
-  it('verify the text content are correctly', () => {
-    let footerNode = ReactDOM.findDOMNode(component);
-    
-    assert.equal(footerNode.textContent, 'Made with  by @afonsopacifer');
-  });
-
-  it('link of github author should be https://github.com/afonsopacifer', () => {
+  it('the link of github author should be https://github.com/afonsopacifer', () => {
     let linkElement = TestUtils.scryRenderedDOMComponentsWithTag(component, 'a');
 
     assert.equal(linkElement.length, 1);

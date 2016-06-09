@@ -131,24 +131,22 @@ export default class Pomodoro extends React.Component {
     Mousetrap.bind(['ctrl+right', 'meta+right'], this.toggleMode.bind(this,1));
   }
 
-  toggleMode(goto_direction) {
+  toggleMode(gotoDirection) {
     let timeTypes = this.getFormatTypes();
-    let current_mode_position = -1;
+    let currentPosition = -1;
 
-    for(let i=0; i<timeTypes.length; i++) {
-      let timeObj = timeTypes[i];
-      if(timeObj.time === this.state.timeType) {
-        current_mode_position = i;
+
+    for (let i = 0; i < timeTypes.length; i++) {
+      if (timeTypes[i].time === this.state.timeType) {
+        currentPosition = i;
         break;
-      }
-    }
+      };
+    };
 
-    if(current_mode_position !== -1) {
-      let new_mode = timeTypes[current_mode_position + goto_direction];
-      if(new_mode) {
-        this.setTime(new_mode.time);
-      }
-    }
+    if (currentPosition !== -1) {
+      let newMode = timeTypes[currentPosition + gotoDirection];
+      if (newMode) this.setTime(newMode.time);
+    };
   }
 
   alert() {

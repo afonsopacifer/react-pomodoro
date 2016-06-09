@@ -8,7 +8,7 @@ import { mount } from 'enzyme';
 
 import { assert } from 'chai';
 
-describe('<Pomodoro />', () => {
+describe('<Pomodoro /> tests of default settings', () => {
   var component; 
 
   beforeEach(() => {
@@ -60,6 +60,16 @@ describe('<Pomodoro />', () => {
     assert.equal(codeButton.innerHTML, 'Code');
     assert.equal(socialButton.innerHTML, 'Social');
     assert.equal(coffeeButton.innerHTML, 'Coffee');
+  });
+});
+
+describe('<Pomodoro /> tests behavior of buttons', () => {
+  var component; 
+
+  beforeEach(() => {
+    component = TestUtils.renderIntoDocument(
+      <Pomodoro />
+    );
   });
 
   it('when click on play the state should be changed', () => {    
