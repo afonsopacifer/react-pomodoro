@@ -149,6 +149,15 @@ export default class Pomodoro extends React.Component {
     };
   }
 
+  _setLocalStorage (item, element) {
+    let value = element.target.checked;
+    localStorage.setItem('react-pomodoro-' + item, value);
+  }
+
+  _getLocalStorage (item) {
+    return (localStorage.getItem('react-pomodoro-' + item) == 'true') ? true : false;
+  }
+
   alert() {
     // vibration
     if(this.refs.vibrate.checked) {
@@ -179,6 +188,7 @@ export default class Pomodoro extends React.Component {
   }
 
   render() {
+
     return (
       <div className="pomodoro">
         <GithubCorner
@@ -227,19 +237,37 @@ export default class Pomodoro extends React.Component {
               <div className="controlsCheck">
 
                 <span className="check">
-                  <input type="checkbox" ref="notification" id="notification"/>
+                  <input 
+                    type="checkbox" 
+                    ref="notification" 
+                    id="notification"
+                    defaultChecked={this._getLocalStorage('notification')}
+                    onChange={this._setLocalStorage.bind(this, 'notification')} 
+                  />
                   <label htmlFor="notification"></label>
                   <span className="checkTitle" >Notification</span>
                 </span>
 
                 <span className="check">
-                  <input type="checkbox" ref="audio" id="audio"/>
+                  <input 
+                    type="checkbox" 
+                    ref="audio" 
+                    id="audio"
+                    defaultChecked={this._getLocalStorage('audio')}
+                    onChange={this._setLocalStorage.bind(this, 'audio')} 
+                  />
                   <label htmlFor="audio"></label>
                   <span className="checkTitle">Sound</span>
                 </span>
 
                 <span className="check">
-                  <input type="checkbox" ref="vibrate" id="vibrate"/>
+                  <input 
+                    type="checkbox" 
+                    ref="vibrate" 
+                    id="vibrate"
+                    defaultChecked={this._getLocalStorage('vibrate')}
+                    onChange={this._setLocalStorage.bind(this, 'vibrate')} 
+                  />
                   <label htmlFor="vibrate"></label>
                   <span className="checkTitle">Vibration</span>
                 </span>
