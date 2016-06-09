@@ -2,7 +2,6 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TestUtils from 'react-addons-test-utils';
 import Pomodoro from './../../../app/components/Pomodoro/Pomodoro';
 import { mount } from 'enzyme';
 
@@ -12,27 +11,24 @@ describe('<Pomodoro /> tests of default settings', () => {
   var component; 
 
   beforeEach(() => {
-    component = TestUtils.renderIntoDocument(
-      <Pomodoro />
-    );
+    component = mount(<Pomodoro />);
   });
 
   it('verify the default state are correctly', () => {
-    assert.isFalse(component.state.play);
-    assert.equal(component.state.time, 1500);
-    assert.equal(component.state.timeType, 1500);
-    assert.equal(component.state.title, '25:00 | Pomodoro timer');
+    assert.isFalse(component.node.state.play);
+    assert.equal(component.node.state.time, 1500);
+    assert.equal(component.node.state.timeType, 1500);
+    assert.equal(component.node.state.title, '25:00 | Pomodoro timer');
   });
 
   it('the options of notification should be unchecked', () => {
-    assert.isFalse(component.refs.audio.checked);
-    assert.isFalse(component.refs.vibrate.checked);
-    assert.isFalse(component.refs.notification.checked);
+    assert.isFalse(component.node.refs.audio.checked);
+    assert.isFalse(component.node.refs.vibrate.checked);
+    assert.isFalse(component.node.refs.notification.checked);
   });
 
   it('should be two buttons to control the play and pause', () => {
-    let pomodoro  = mount(<Pomodoro />),
-        buttons   = pomodoro.find('div.pomodoro div.controlsPlay button');
+    let buttons = component.find('div.pomodoro div.controlsPlay button');
 
     assert.equal(buttons.length, 2);
 
@@ -44,8 +40,7 @@ describe('<Pomodoro /> tests of default settings', () => {
   });
 
   it('should be three buttons to change pomodoro type', () => {
-    let pomodoro  = mount(<Pomodoro />),
-        buttons   = pomodoro.find('div.pomodoro div.main div.types button');
+    let buttons = component.find('div.pomodoro div.main div.types button');
 
     assert.equal(buttons.length, 3);
 
@@ -67,41 +62,36 @@ describe('<Pomodoro /> tests behavior of buttons', () => {
   var component; 
 
   beforeEach(() => {
-    component = TestUtils.renderIntoDocument(
-      <Pomodoro />
-    );
+    component = mount(<Pomodoro />);
   });
 
-  it('when click on play the state should be changed', () => {    
-    let pomodoro    = mount(<Pomodoro />),
-        playButton  = pomodoro.find('div.pomodoro div.controlsPlay button.play');
+  it('when click on play the state should be changed', () => {
+    let playButton = component.find('div.pomodoro div.controlsPlay button.play');
 
-    assert.isFalse(pomodoro.node.state.play);
+    assert.isFalse(component.node.state.play);
     playButton.simulate('click');
-    assert.isTrue(pomodoro.node.state.play);
+    assert.isTrue(component.node.state.play);
   });
 
-  it('when click on social type the states should be changed', () => {    
-    let pomodoro      = mount(<Pomodoro />),
-        socialButton  = pomodoro.find('div.pomodoro div.types button.social');
+  it('when click on social type the states should be changed', () => {
+    let socialButton = component.find('div.pomodoro div.types button.social');
 
     socialButton.simulate('click');
 
-    assert.isTrue(pomodoro.node.state.play);
-    assert.equal(pomodoro.node.state.time, 300);
-    assert.equal(pomodoro.node.state.timeType, 300);
-    assert.equal(pomodoro.node.state.title, '05:00 | Pomodoro timer');
+    assert.isTrue(component.node.state.play);
+    assert.equal(component.node.state.time, 300);
+    assert.equal(component.node.state.timeType, 300);
+    assert.equal(component.node.state.title, '05:00 | Pomodoro timer');
   });
 
-  it('when click on coffee type the states should be changed', () => {    
-    let pomodoro      = mount(<Pomodoro />),
-        coffeeButton  = pomodoro.find('div.pomodoro div.types button.coffee');
+  it('when click on coffee type the states should be changed', () => {
+    let coffeeButton = component.find('div.pomodoro div.types button.coffee');
 
     coffeeButton.simulate('click');
 
-    assert.isTrue(pomodoro.node.state.play);
-    assert.equal(pomodoro.node.state.time, 900);
-    assert.equal(pomodoro.node.state.timeType, 900);
-    assert.equal(pomodoro.node.state.title, '15:00 | Pomodoro timer');
+    assert.isTrue(component.node.state.play);
+    assert.equal(component.node.state.time, 900);
+    assert.equal(component.node.state.timeType, 900);
+    assert.equal(component.node.state.title, '15:00 | Pomodoro timer');
   });
 });
