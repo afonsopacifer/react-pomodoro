@@ -131,24 +131,31 @@ export default class Pomodoro extends React.Component {
     Mousetrap.bind(['ctrl+right', 'meta+right'], this.toggleMode.bind(this,1));
   }
 
-  toggleMode(goto_direction) {
+  toggleMode(gotoDirection) {
     let timeTypes = this.getFormatTypes();
-    let current_mode_position = -1;
+    let currentPosition = -1;
 
-    for(let i=0; i<timeTypes.length; i++) {
-      let timeObj = timeTypes[i];
-      if(timeObj.time === this.state.timeType) {
-        current_mode_position = i;
+
+    for (let i = 0; i < timeTypes.length; i++) {
+      if (timeTypes[i].time === this.state.timeType) {
+        currentPosition = i;
         break;
-      }
-    }
+      };
+    };
 
-    if(current_mode_position !== -1) {
-      let new_mode = timeTypes[current_mode_position + goto_direction];
-      if(new_mode) {
-        this.setTime(new_mode.time);
-      }
-    }
+    if (currentPosition !== -1) {
+      let newMode = timeTypes[currentPosition + gotoDirection];
+      if (newMode) this.setTime(newMode.time);
+    };
+  }
+
+  _setLocalStorage (item, element) {
+    let value = element.target.checked;
+    localStorage.setItem('react-pomodoro-' + item, value);
+  }
+
+  _getLocalStorage (item) {
+    return (localStorage.getItem('react-pomodoro-' + item) == 'true') ? true : false;
   }
 
   alert() {
@@ -181,6 +188,7 @@ export default class Pomodoro extends React.Component {
   }
 
   render() {
+
     return (
       <div className="pomodoro">
         <GithubCorner
@@ -229,19 +237,37 @@ export default class Pomodoro extends React.Component {
               <div className="controlsCheck">
 
                 <span className="check">
-                  <input type="checkbox" ref="notification" id="notification"/>
+                  <input 
+                    type="checkbox" 
+                    ref="notification" 
+                    id="notification"
+                    defaultChecked={this._getLocalStorage('notification')}
+                    onChange={this._setLocalStorage.bind(this, 'notification')} 
+                  />
                   <label htmlFor="notification"></label>
                   <span className="checkTitle" >Notification</span>
                 </span>
 
                 <span className="check">
-                  <input type="checkbox" ref="audio" id="audio"/>
+                  <input 
+                    type="checkbox" 
+                    ref="audio" 
+                    id="audio"
+                    defaultChecked={this._getLocalStorage('audio')}
+                    onChange={this._setLocalStorage.bind(this, 'audio')} 
+                  />
                   <label htmlFor="audio"></label>
                   <span className="checkTitle">Sound</span>
                 </span>
 
                 <span className="check">
-                  <input type="checkbox" ref="vibrate" id="vibrate"/>
+                  <input 
+                    type="checkbox" 
+                    ref="vibrate" 
+                    id="vibrate"
+                    defaultChecked={this._getLocalStorage('vibrate')}
+                    onChange={this._setLocalStorage.bind(this, 'vibrate')} 
+                  />
                   <label htmlFor="vibrate"></label>
                   <span className="checkTitle">Vibration</span>
                 </span>
