@@ -175,7 +175,7 @@ export default class Pomodoro extends React.Component {
         let notification = new Notification("Relax :)", {
           icon: "img/coffee.png",
           lang: "en",
-          body: "Go talk or drink a coffe."
+          body: "Go talk or drink a coffee."
         });
       } else {
         let notification = new Notification("The time is over!", {
