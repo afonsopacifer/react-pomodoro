@@ -225,7 +225,7 @@ export default class Pomodoro extends React.Component {
 
         {/* Bottom section
         ------------------------------- */}
-        <div class="bottomBar">
+        <div className="bottomBar">
 
           <div className="controls">
             <div className="container">
