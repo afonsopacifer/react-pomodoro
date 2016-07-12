@@ -216,8 +216,7 @@ export default class Pomodoro extends React.Component {
 
           <div className="container">
             <div className="controlsPlay">
-              <button className="play btnIcon" onClick={this.play}></button>
-              <button className="stop btnIcon" onClick={this.reset}></button>
+              { (this.state.play) ? <button className="stop btnIcon" onClick={this.reset}></button> : <button className="play btnIcon" onClick={this.play}></button> }
             </div>
           </div>
 
