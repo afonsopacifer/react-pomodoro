@@ -60,7 +60,7 @@ export default class Pomodoro extends React.Component {
 
   formatType(timeType) {
     let timeTypes = this.getFormatTypes();
-    for(let i=0; i<timeTypes.length; i++) {
+    for (let i = 0, len = timeTypes.length; i < len; i++) {
       let timeObj = timeTypes[i];
       if(timeObj.time === timeType) {
         return timeObj.type;
@@ -75,12 +75,12 @@ export default class Pomodoro extends React.Component {
   }
 
   play() {
-    if (true === this.state.play) return; 
+    if (true === this.state.play) return;
 
     this.restartInterval();
-    
-    this.setState({ 
-      play: true 
+
+    this.setState({
+      play: true
     });
   }
 
@@ -99,11 +99,11 @@ export default class Pomodoro extends React.Component {
 
   setTime(newTime) {
     this.restartInterval();
-    
+
     this.setState({
-      time: newTime, 
-      timeType: newTime, 
-      title: this.getTitle(newTime), 
+      time: newTime,
+      timeType: newTime,
+      title: this.getTitle(newTime),
       play: true
     });
   }
@@ -112,9 +112,9 @@ export default class Pomodoro extends React.Component {
     let defaultTime = 1500;
 
     this.setState({
-      time: defaultTime, 
-      timeType: defaultTime, 
-      title: this.getTitle(defaultTime), 
+      time: defaultTime,
+      timeType: defaultTime,
+      title: this.getTitle(defaultTime),
       play: false
     });
   }
@@ -136,7 +136,7 @@ export default class Pomodoro extends React.Component {
     let currentPosition = -1;
 
 
-    for (let i = 0; i < timeTypes.length; i++) {
+    for (let i = 0, len = timeTypes.length; i < len; i++) {
       if (timeTypes[i].time === this.state.timeType) {
         currentPosition = i;
         break;
@@ -237,36 +237,36 @@ export default class Pomodoro extends React.Component {
               <div className="controlsCheck">
 
                 <span className="check">
-                  <input 
-                    type="checkbox" 
-                    ref="notification" 
+                  <input
+                    type="checkbox"
+                    ref="notification"
                     id="notification"
                     defaultChecked={this._getLocalStorage('notification')}
-                    onChange={this._setLocalStorage.bind(this, 'notification')} 
+                    onChange={this._setLocalStorage.bind(this, 'notification')}
                   />
                   <label htmlFor="notification"></label>
                   <span className="checkTitle" >Notification</span>
                 </span>
 
                 <span className="check">
-                  <input 
-                    type="checkbox" 
-                    ref="audio" 
+                  <input
+                    type="checkbox"
+                    ref="audio"
                     id="audio"
                     defaultChecked={this._getLocalStorage('audio')}
-                    onChange={this._setLocalStorage.bind(this, 'audio')} 
+                    onChange={this._setLocalStorage.bind(this, 'audio')}
                   />
                   <label htmlFor="audio"></label>
                   <span className="checkTitle">Sound</span>
                 </span>
 
                 <span className="check">
-                  <input 
-                    type="checkbox" 
-                    ref="vibrate" 
+                  <input
+                    type="checkbox"
+                    ref="vibrate"
                     id="vibrate"
                     defaultChecked={this._getLocalStorage('vibrate')}
-                    onChange={this._setLocalStorage.bind(this, 'vibrate')} 
+                    onChange={this._setLocalStorage.bind(this, 'vibrate')}
                   />
                   <label htmlFor="vibrate"></label>
                   <span className="checkTitle">Vibration</span>
