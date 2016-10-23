@@ -8,11 +8,17 @@ import Footer from './../../../app/components/Footer/Footer';
 import { assert } from 'chai';
 
 describe('<Footer /> tests of node elements', () => {
-  var component; 
+  var component;
+
+  var wrapper = React.createClass({
+    render() {
+      return <Footer />;
+    }
+  });
 
   beforeEach(function() {
     component = TestUtils.renderIntoDocument(
-      <Footer />
+      React.createElement(wrapper)
     );
   });
 
