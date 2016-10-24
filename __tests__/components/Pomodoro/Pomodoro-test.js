@@ -27,16 +27,14 @@ describe('<Pomodoro /> tests of default settings', () => {
     assert.isFalse(component.node.refs.notification.checked);
   });
 
-  it('should be two buttons to control the play and pause', () => {
+  it('should be one visible button to control the play and pause', () => {
     let buttons = component.find('div.pomodoro div.controlsPlay button');
 
-    assert.equal(buttons.length, 2);
+    assert.equal(buttons.length, 1);
 
-    let playButton = buttons.find('.play').node,
-        stopButton = buttons.find('.stop').node;
+    let playButton = buttons.find('.play').node;
     
     assert.isDefined(playButton);
-    assert.isDefined(stopButton);
   });
 
   it('should be three buttons to change pomodoro type', () => {
