@@ -1,20 +1,18 @@
 {
   "name": "react-pomodoro",
-  "version": "0.4.1",
   "description": "Pomodoro timer for developers.",
-  "license": "MIT",
-  "main": "webpack.config.js",
+  "version": "0.4.1",
   "author": {
     "name": "Afonso Pacifer",
     "email": "afonsopacifer@live.com",
     "url": "http://afonsopacifer.com"
   },
-  "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --content-base app --inline --hot",
-    "lint": "./node_modules/.bin/eslint app/components/**/*.js",
-    "build": "NODE_ENV='production' ./node_modules/.bin/webpack",
-    "deploy": "git push origin `git subtree split --prefix app master`:gh-pages --force",
-    "test": "mocha --require ./__tests__/mock-dom.js --compilers js:babel-core/register --recursive __tests__ --timeout 15000"
+  "dependencies": {
+    "mousetrap": "^1.5.3",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "react-github-corner": "^0.3.0",
+    "react-title-component": "^1.0.1"
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -36,11 +34,13 @@
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.1"
   },
-  "dependencies": {
-    "mousetrap": "^1.5.3",
-    "react": "^15.0.1",
-    "react-dom": "^15.0.1",
-    "react-github-corner": "^0.3.0",
-    "react-title-component": "^1.0.1"
+  "license": "MIT",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "NODE_ENV='production' ./node_modules/.bin/webpack",
+    "deploy": "git push origin `git subtree split --prefix app master`:gh-pages --force",
+    "lint": "./node_modules/.bin/eslint app/components/**/*.js",
+    "start": "./node_modules/.bin/webpack-dev-server --content-base app --inline --hot",
+    "test": "mocha --require ./__tests__/mock-dom.js --compilers js:babel-core/register --recursive __tests__ --timeout 15000"
   }
 }
