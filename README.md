@@ -51,23 +51,23 @@ $ npm install -g webpack
 ```sh
 $ git clone https://github.com/afonsopacifer/react-pomodoro.git
 $ cd react-pomodoro
-$ npm install
+$ yarn
 ```
 **3 -** Run webpack and webpack-dev-server:
 
 ```sh
-$ npm start
+$ yarn start
 ```
 
 Go to: [localhost:8080](http://localhost:8080/)
 
 ## Tasks available
 
-- `$ npm start` - Run webpack and webpack-dev-server
-- `$ npm run lint` - ESlint :D
-- `$ npm run test` - Run mocha tests
-- `$ npm run build` - Generates the bundle.js
-- `$ npm run deploy` - Push for gh-pages
+- `$ yarn start` - Run webpack and webpack-dev-server
+- `$ yarn lint` - ESlint :D
+- `$ yarn test` - Run mocha tests
+- `$ yarn build` - Generates the bundle.js
+- `$ yarn deploy` - Push for gh-pages
 
 
 ## Contributing
