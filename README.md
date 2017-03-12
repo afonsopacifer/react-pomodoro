@@ -43,7 +43,7 @@ To keep better organization of releases we follow the [Semantic Versioning 2.0.0
 **1 -** Prepare the environment:
 
 ```sh
-$ npm install -g webpack
+$ npm install -g webpack yarn
 ```
 
 **2 -** Clone the project and install the dependencies:
