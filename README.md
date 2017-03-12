@@ -7,7 +7,7 @@
 
 > Pomodoro timer for developers.
 
-![homescreen](homescreen.png)
+![homescreen](content/homescreen.png)
 
 ## Features
 
@@ -20,10 +20,10 @@
 - **Time display:**
   - Page display
   - Title display <br><br>
-  ![title](title.jpg)
+  ![title](content/title.jpg)
 - **Alarms available:**
   - Web Notifications <br>
-  ![notifications](notifications.png)
+  ![notifications](content/notifications.png)
   - Vibration
   - Songs
 - **Basic controls:**
