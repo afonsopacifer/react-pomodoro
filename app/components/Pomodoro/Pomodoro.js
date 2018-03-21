@@ -46,7 +46,7 @@ export default class Pomodoro extends React.Component {
   format(seconds) {
     let m = Math.floor(seconds % 3600 / 60);
     let s = Math.floor(seconds % 3600 % 60);
-    let timeFormated = (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+    let timeFormated = `${m < 10 ? "0" : ""}${m}:${s < 10 ? "0" : ""}${s}`;
     return timeFormated;
   }
 
@@ -121,7 +121,7 @@ export default class Pomodoro extends React.Component {
 
   getTitle(time) {
     time = typeof time === 'undefined' ? this.state.time : time;
-    let _title = this.format(time) + ' | Pomodoro timer';
+    let _title = `${this.format(time)} | Pomodoro timer`;
     return _title;
   }
 
@@ -151,11 +151,11 @@ export default class Pomodoro extends React.Component {
 
   _setLocalStorage (item, element) {
     let value = element.target.checked;
-    localStorage.setItem('react-pomodoro-' + item, value);
+    localStorage.setItem(`react-pomodoro-${item}`, value);
   }
 
   _getLocalStorage (item) {
-    return (localStorage.getItem('react-pomodoro-' + item) == 'true') ? true : false;
+    return (localStorage.getItem(`react-pomodoro-${item}`) == 'true') ? true : false;
   }
 
   alert() {
