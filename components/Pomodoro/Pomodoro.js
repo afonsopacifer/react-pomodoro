@@ -155,7 +155,7 @@ export default class Pomodoro extends React.Component {
     };
   }
 
-  _setLocalStorage (element) {
+  _setLocalStorage (item, element) {
     let value = element.target.checked;
     localStorage.setItem('react-pomodoro-' + item, value);
   }
