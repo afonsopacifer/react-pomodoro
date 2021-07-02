@@ -200,6 +200,21 @@ body {
   line-height: 40px;
 }
 
+
+.volume {
+  display: inline-block;
+  margin: 0 10px;
+  -webkit-transition: color .3s;
+  transition: color .3s;
+  line-height: 40px;
+}
+
+.volume svg {
+  width: 15px;
+  fill: #fff;
+}
+
+
 @media (max-width: 500px) {
   .check {
     width: 100%;

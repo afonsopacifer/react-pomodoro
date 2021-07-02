@@ -15,6 +15,7 @@ export default class Pomodoro extends React.Component {
       time: 0,
       play: false,
       timeType: 0,
+      volume: this._getLocalStorageVolume(),
       title: ''
     };
     // Bind early, avoid function creation on render loop
@@ -131,6 +132,11 @@ export default class Pomodoro extends React.Component {
     Mousetrap.bind(['ctrl+right', 'meta+right'], this.toggleMode.bind(this,1));
   }
 
+  handleVolume(e) {
+    this.setState({...this.state,volume: Number(e.target.value)});
+    this._setLocalStorageVolume(e.target.value)
+  }
+
   toggleMode(gotoDirection) {
     let timeTypes = this.getFormatTypes();
     let currentPosition = -1;
@@ -154,8 +160,17 @@ export default class Pomodoro extends React.Component {
     localStorage.setItem('react-pomodoro-' + item, value);
   }
 
+
+  _setLocalStorageVolume (value) {
+    localStorage.setItem('react-pomodoro-volume', value);
+  }
+
   _getLocalStorage (item) {
     return (localStorage.getItem('react-pomodoro-' + item) == 'true') ? true : false;
+  }
+
+  _getLocalStorageVolume () {
+    return (localStorage.getItem('react-pomodoro-volume') || 50);
   }
 
   alert() {
@@ -166,6 +181,7 @@ export default class Pomodoro extends React.Component {
     // audio
     if(this.refs.audio.checked) {
       let audio = new Audio('songs/alarm.mp3');
+      audio.volume = this.state.volume / 100;
       audio.play();
       setTimeout(()=> audio.pause(), 1400);
     }
@@ -270,6 +286,24 @@ export default class Pomodoro extends React.Component {
                   />
                   <label htmlFor="vibrate"></label>
                   <span className="checkTitle">Vibration</span>
+                </span>
+
+                <span className="volume">
+                  <svg  x="0px" y="0px"
+                    viewBox="0 0 448.046 448.046" >
+                  <path d="M358.967,1.614c-5.6-2.72-12.128-1.952-16.928,1.92L186.391,128.046h-74.368c-17.664,0-32,14.336-32,32v128
+                    c0,17.664,14.336,32,32,32h74.368l155.616,124.512c2.912,2.304,6.464,3.488,10.016,3.488c2.336,0,4.704-0.544,6.944-1.6
+                    c5.536-2.656,9.056-8.256,9.056-14.4v-416C368.023,9.902,364.503,4.302,358.967,1.614z"/>
+                  </svg >
+                  <input 
+                    type="range" 
+                    id="volume"
+                    type="range" 
+                    min="0" max="100" 
+                    value={this.state.volume} 
+                    onChange={e => this.handleVolume(e)}
+                    step="1"/>
+          
                 </span>
 
               </div> {/* controlsCheck */}
