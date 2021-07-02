@@ -34,7 +34,7 @@
     "mocha": "^2.5.3",
     "react-addons-test-utils": "^15.1.0",
     "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^3.1.11"
   },
   "dependencies": {
     "mousetrap": "^1.5.3",
