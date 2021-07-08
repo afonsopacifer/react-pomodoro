@@ -12,6 +12,10 @@ body {
   background-color: #272727;
 }
 
+.pomodoro {
+  overflow: scroll;
+}
+
 @media (min-width: 500px) {
   .pomodoro {
     height: 100%;
@@ -143,7 +147,7 @@ body {
   bottom: 0;
 }
 
-@media (max-width: 500px) {
+@media (max-height: 500px) {
   .bottomBar {
     position: relative;
   }
