@@ -16,7 +16,17 @@ export default class Pomodoro extends React.Component {
       play: false,
       timeType: 0,
       volume: this._getLocalStorageVolume(),
-      title: ''
+      title: '',
+      notificationSound: this._getLocalStorageNotificationSound(),
+      notificationDuration: this._getLocalStorageNotificationDuration(),
+      notificationSounds: [
+        {id: 1, name: 'Alarm', filePath: 'songs/alarm.mp3'},
+        {id: 2, name: 'Tibetan bowl', filePath: 'songs/tibetan-bowl.mp3'},
+      ],
+      songsDuration: {
+        'songs/tibetan-bowl.mp3': 6400,
+        'songs/alarm.mp3': 1400
+      }
     };
     // Bind early, avoid function creation on render loop
     this.setTimeForCode = this.setTime.bind(this, 1500);
@@ -137,6 +147,19 @@ export default class Pomodoro extends React.Component {
     this._setLocalStorageVolume(e.target.value)
   }
 
+  handleNotificationSound(e) {
+    let song = e.target.value
+    let duration = this.state.songsDuration[e.target.value];
+
+    this.setState({
+      notificationSound: song,
+      notificationDuration: duration,
+    });
+
+    this._setLocalStorageNotificationSound(song);
+    this._setLocalStorageNotificationDuration(duration);
+  }
+
   toggleMode(gotoDirection) {
     let timeTypes = this.getFormatTypes();
     let currentPosition = -1;
@@ -160,7 +183,6 @@ export default class Pomodoro extends React.Component {
     localStorage.setItem('react-pomodoro-' + item, value);
   }
 
-
   _setLocalStorageVolume (value) {
     localStorage.setItem('react-pomodoro-volume', value);
   }
@@ -173,6 +195,30 @@ export default class Pomodoro extends React.Component {
     return (localStorage.getItem('react-pomodoro-volume') || 50);
   }
 
+  _getLocalStorageNotificationSound() {
+    const soundStorage = localStorage.getItem('react-pomodoro-notification-sound');
+
+    if (!soundStorage) {
+      return 'songs/alarm.mp3';
+    }
+
+    this._setLocalStorageNotificationDuration(5000);
+
+    return soundStorage;
+  }
+
+  _setLocalStorageNotificationSound(value) {
+    localStorage.setItem('react-pomodoro-notification-sound', value);
+  }
+
+  _getLocalStorageNotificationDuration() {
+    return (localStorage.getItem('react-pomodoro-notification-duration') || 1400);
+  }
+
+  _setLocalStorageNotificationDuration(value) {
+    localStorage.setItem('react-pomodoro-notification-duration', value)
+  }
+
   alert() {
     // vibration
     if(this.refs.vibrate.checked) {
@@ -180,10 +226,10 @@ export default class Pomodoro extends React.Component {
     }
     // audio
     if(this.refs.audio.checked) {
-      let audio = new Audio('songs/alarm.mp3');
+      let audio = new Audio(this.state.notificationSound);
       audio.volume = this.state.volume / 100;
       audio.play();
-      setTimeout(()=> audio.pause(), 1400);
+      setTimeout(()=> audio.pause(), this.state.notificationDuration);
     }
     // notification
     if(this.refs.notification.checked) {
@@ -307,6 +353,18 @@ export default class Pomodoro extends React.Component {
                 </span>
 
               </div> {/* controlsCheck */}
+
+              <span className="notificationSound">
+                <select 
+                  id="notification-sound"
+                  value={this.state.notificationSound}
+                  onChange={e => this.handleNotificationSound(e)}
+                  >
+                    {this.state.notificationSounds.map((sound) =>
+                      <option key={ sound.id } value={ sound.filePath }>{ sound.name }</option>
+                    )}
+                </select>
+              </span>
 
             </div> {/* container */}
           </div> {/* controls */}
