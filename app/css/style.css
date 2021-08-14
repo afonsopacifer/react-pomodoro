@@ -214,6 +214,11 @@ body {
   fill: #fff;
 }
 
+.notificationSound {
+  display: inline-block;
+  margin: 0 10px 0 50px;
+  line-height: 40px;
+}
 
 @media (max-width: 500px) {
   .check {
