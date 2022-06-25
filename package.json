@@ -30,7 +30,7 @@
     "chai": "^3.5.0",
     "enzyme": "^2.3.0",
     "eslint": "^2.11.1",
-    "jsdom": "^9.2.1",
+    "jsdom": "^16.5.0",
     "mocha": "^2.5.3",
     "react-addons-test-utils": "^15.1.0",
     "webpack": "^1.12.9",
